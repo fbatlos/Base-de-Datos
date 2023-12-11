@@ -42,9 +42,9 @@ marca VARCHAR2(20)
 --Para borrar restriciones  DROP TABLE Zapatero CASCADE CONSTRAINT;
 --------------------------------------------------------------------------------------------------------
 --Buscar las retricciones
-SELECT constraint_name, constraint_type , table_name
+SELECT constraint_name,constraint_type , table_name
 FROM user_constraints
-WHERE table_name = 'ZAPATERIA_PK';
+WHERE table_name = 'ZAPATERIA_PK'; 
 -- con * te dice todo
 SELECT *
 FROM user_constraints
