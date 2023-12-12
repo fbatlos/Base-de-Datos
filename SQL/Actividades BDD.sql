@@ -1,3 +1,4 @@
+--Francisco José Batista de los Santos.
 -- Act 1 -------------------------------------------------------------------------------------------------------
 --La tabla guerdará la id del departamento como numero con un maximo de 6 digitos , el nombre
 --se guardará de tal forma que si los caracteres no llegan a 40 solo guardará los que esten 
