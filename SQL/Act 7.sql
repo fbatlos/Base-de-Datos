@@ -1,10 +1,11 @@
---Act 1
+--Act 1 0.9
 CREATE TABLE Fabrica(
 COD_FABRICANTE NUMBER(3) CONSTRAINT COD_FABRICANTE PRIMARY KEY,
 NOMBRE VARCHAR2(15)  CHECK(NOMBRE=UPPER(NOMBRE)),
 PAIS VARCHAR2(15)  CHECK(PAIS=UPPER(PAIS))
 );
---Act 2
+--Falta nombre en los 2 constraint de check.(-0.1 al ser el mismo error)
+--Act 2 -- 0.8
 CREATE TABLE Articulos(
 ARTICULO VARCHAR2(20),
 COD_FABRICANTE NUMBER(3),
@@ -22,8 +23,9 @@ CONSTRAINT ARTICULO_COD_FABRICANTE_fk FOREIGN KEY(COD_FABRICANTE)
 REFERENCES Fabrica
 ON DELETE CASCADE
 );
+--Falta comprobar que el peso sea menor 0 (-0.2)
 
---Act 3 ---------------------------
+--Act 3 --------------------------- 1.8
 
 CREATE TABLE TIENDAS(
 NIF VARCHAR2 (10) PRIMARY KEY,
@@ -33,8 +35,10 @@ POBLACION VARCHAR2 (20),
 PROVINCIA VARCHAR2 (20) CHECK(PROVINCIA = UPPER(PROVINCIA)),
 CODPOSTAL NUMBER (5)
 );
+--Falta nombre de la clave primaria NIF (-0.1)
+--Falta nombre del constraint check de PROVINCIA(-0.1)
 
---Act 4 ------------------------------
+--Act 4 ------------------------------ 3
 
 CREATE TABLE PEDIDOS(
 NIF VARCHAR2 (10),
@@ -60,8 +64,8 @@ REFERENCES TIENDAS
 ON DELETE CASCADE
 );
 
---Act 5 ------------------------------
-
+--Act 5 ------------------------------3
+ 
 CREATE TABLE VENTAS(
 NIF VARCHAR2 (10),
 ARTICULO VARCHAR2(20),
@@ -89,3 +93,5 @@ CONSTRAINT VENTAS_NIF_fk FOREIGN KEY(NIF)
 REFERENCES TIENDAS
 ON DELETE CASCADE
 );
+
+--Total : 9.5
