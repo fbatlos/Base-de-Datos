@@ -11,7 +11,7 @@
 SELECT [DISTINCT | ALL] {* | <expr1>[, <expr2>] ...}
 FROM <tabla1>[, <tabla2>, ...]
 [WHERE <condicion_where>]
-[GROUP BY <group_expr1>[, <group_expr2>, ...]
+[GROUP BY <group_expr1>[, <group_expr2>, ...]]
 [HAVING <condicion_having>]
 [ORDER BY <expr_orderby1 [ASC | DESC]>[, ...]]
 
@@ -35,7 +35,11 @@ SELECT *
 --1B.– Obtener los codigos y nombres de todos los empleados
 SELECT empno, ename
   FROM emp;
-  
+---------------------------------------------Mi a notacion  
+--para que salga todo junto : set linesize (num que quieras)
+--por si tienes mas info de tabla y sale partida : set pagesize (num que quieras)
+--
+
 
 
 --**** WHERE [ WHERE Condicion]
@@ -85,7 +89,7 @@ SELECT A.empno, A.ename
  WHERE A.deptno = 10;
  
  
- -- Veamos ahora la tabla DEPT
+ -- Veamos ahora la tabla DEPT (Lo 1º que se hace)---------------------------
  DESC dept;
  
  --Vemos todos sus datos
@@ -100,10 +104,10 @@ SELECT A.empno, A.ename
 --20 RESEARCH DALLAS
 --30 SALES CHICAGO
 
- --Ordenamos todos los datos de la tabla DEPT por el numero de deptno:
+ --Ordenamos todos los datos de la tabla DEPT por el numero de deptno: 
    SELECT *
      FROM dept
- ORDER BY deptno;
+ ORDER BY deptno;--ordena y se puede pones desc (descendente) y asc(Ascendente)
  
 --     DEPTNO DNAME          LOC
 ---------- -------------- -------------
@@ -145,7 +149,7 @@ WHERE deptno = 40;
  
    SELECT *
      FROM dept
- ORDER BY 2;
+ ORDER BY 2; --significa la posicion de la columna que queramos ordenar
  
  --- Se puede ordernar por varios campos el que está mas a la izquierda es el principal
  --  Por ejemplo, en la tabla empleados ordenamos por el tipo de trabajo (job) de manera ascendente, y luego por el salario de manera descendente
