@@ -104,7 +104,7 @@ SELECT A.empno, A.ename
 --20 RESEARCH DALLAS
 --30 SALES CHICAGO
 
- --Ordenamos todos los datos de la tabla DEPT por el numero de deptno: 
+ --Ordenamos todos los datos de la tabla DEPT por el numero de deptno:  ----------------- Select dice la columna que queremos , y con where la fila.
    SELECT *
      FROM dept
  ORDER BY deptno;--ordena y se puede pones desc (descendente) y asc(Ascendente)
