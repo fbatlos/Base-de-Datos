@@ -10,7 +10,7 @@
 
 SELECT [DISTINCT | ALL] {* | <expr1>[, <expr2>] ...}
 FROM <tabla1>[, <tabla2>, ...]
-[WHERE <condicion_where>]
+[WHERE <condicion_where>] 
 [GROUP BY <group_expr1>[, <group_expr2>, ...]]
 [HAVING <condicion_having>]
 [ORDER BY <expr_orderby1 [ASC | DESC]>[, ...]]
