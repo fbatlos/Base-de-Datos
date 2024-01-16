@@ -1,18 +1,17 @@
 --Tablas EMPLE Y DEPART
---1 ----Seleccionar de la tabla EMPLE, aquellas filas cuyo APELLIDO empiece por "A" y el OFICIO tenga una "E" en cualquier posición.
+--1 ----Seleccionar de la tabla EMPLE, aquellas filas cuyo APELLIDO empiece por "A" y el OFICIO tenga una "E" en cualquier posición.  --> 10
 SELECT *
 FROM EMPLE
 where APELLIDO LIKE 'A%' 
     and OFICIO LIKE '%E%';
 
---2--Seleccionar el APELLIDO, OFICIO y LOCALIDAD de los empleados que son ANALISTAS.
+--2--Seleccionar el APELLIDO, OFICIO y LOCALIDAD de los empleados que son ANALISTAS. --> 2.5
 SELECT APELLIDO , OFICIO , LOC
 FROM EMPLE , DEPART
-WHERE OFICIO = 'ANALISTA';
+WHERE OFICIO = 'ANALISTA'
+  AND EMPLE.DEPT_NO = DEPART.DEPT_NO; --Faltaba esto .
 
---3--Mostrar los empleados (nombre, oficio, salario y fecha de alta) que desempeñen el mismo oficio que "JIMENEZ" o que tengan un salario mayor o igual que "FERNANDEZ".
-SELECT EMP_NO , OFICIO , SALARIO , FECHA_ALT
-FROM EMPLE;
+--3--Mostrar los empleados (nombre, oficio, salario y fecha de alta) que desempeñen el mismo oficio que "JIMENEZ" o que tengan un salario mayor o igual que "FERNANDEZ". ->
 
 SELECT APELLIDO , OFICIO , SALARIO , FECHA_ALT
 FROM EMPLE
