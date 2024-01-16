@@ -11,7 +11,7 @@ FROM EMPLE , DEPART
 WHERE OFICIO = 'ANALISTA'
   AND EMPLE.DEPT_NO = DEPART.DEPT_NO; --Faltaba esto .
 
---3--Mostrar los empleados (nombre, oficio, salario y fecha de alta) que desempeñen el mismo oficio que "JIMENEZ" o que tengan un salario mayor o igual que "FERNANDEZ". ->
+--3--Mostrar los empleados (nombre, oficio, salario y fecha de alta) que desempeñen el mismo oficio que "JIMENEZ" o que tengan un salario mayor o igual que "FERNANDEZ". ->10
 
 SELECT APELLIDO , OFICIO , SALARIO , FECHA_ALT
 FROM EMPLE

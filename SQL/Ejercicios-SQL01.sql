@@ -11,8 +11,6 @@ FROM EMPLE , DEPART
 WHERE OFICIO = 'ANALISTA';
 
 --3--Mostrar los empleados (nombre, oficio, salario y fecha de alta) que desempeñen el mismo oficio que "JIMENEZ" o que tengan un salario mayor o igual que "FERNANDEZ".
-SELECT EMP_NO , OFICIO , SALARIO , FECHA_ALT
-FROM EMPLE;
 
 SELECT APELLIDO , OFICIO , SALARIO , FECHA_ALT
 FROM EMPLE
