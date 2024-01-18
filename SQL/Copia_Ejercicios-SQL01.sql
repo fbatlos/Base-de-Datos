@@ -1,3 +1,4 @@
+--Francisco José Batista DE Los Santos
 --Tablas EMPLE Y DEPART
 --1 ----Seleccionar de la tabla EMPLE, aquellas filas cuyo APELLIDO empiece por "A" y el OFICIO tenga una "E" en cualquier posición.  --> 10
 SELECT *

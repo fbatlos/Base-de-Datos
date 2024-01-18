@@ -453,8 +453,8 @@ SELECT DEPTNO, DNAME
 SELECT ENAME, DEPTNO 
   FROM EMP;
   
--- Ejemplo: Listar los departamentos que NO tengan empleados
-
+-- Ejemplo: Listar los departamentos que NO tengan empleados                        *****************************************************************
+ 
 SELECT * 
   FROM DEPT
  WHERE NOT EXISTS  ( SELECT *
@@ -529,7 +529,7 @@ SELECT ENAME, DEPTNO,JOB
 -- debe coincidir con el tipo de dato devuelto por la subconsulta
 
 
--- Subconsultas correlacionadas
+-- Subconsultas correlacionadas                                                                                    **********************************
 -- Una subconsulta correlacionada es aquella que hace referencia a una columna 
 -- o varias de la consulta más externa. A veces la consulta hace uso
 -- de columnas que tienen el mismo nombre que las coulmunas de las tablas 
@@ -554,7 +554,7 @@ SELECT ENAME, SAL, DEPTNO
 -- La subconsulta anterior devuelve, para cada fila que se recupere de la consulta mas externa,
 -- el salario del departamento que se está recuperando en la consulta externa;
 -- para referenciar a dicho departamenteo se necesita el alias E usado la tabla de la consulta externa
---Hemos utilizado tambien la funcion MAXIMO: MAX.
+--Hemos utilizado tambien la funcion MAXIMO: MAX.                                                                   ******************************
 
 -- Sin utilizar la subconsulta anterior, 
 -- huubieramos necesitado todas las consultas siguientes para obtener la misma informacion
@@ -595,7 +595,7 @@ SELECT ENAME, DEPTNO, MAX (SAL)
  WHERE DEPTNO = 40; 
 					 
 
---- COMBINACION DE TABLAS (o CONSULTA MULTITABLA)
+--- COMBINACION DE TABLAS (o CONSULTA MULTITABLA)        
 -- Sintaxis general:
 
 SELECT columnas de las tablas citadas en la clausula "from"
@@ -650,7 +650,7 @@ SELECT EMPNO, ENAME, JOB, EMP.DEPTNO, DNAME, LOC
   FROM EMP, DEPT
  WHERE EMP.DEPTNO = DEPT.DEPTNO;
 
--- Se ve mas claro poniendo ALIAS a las tablas
+-- Se ve mas claro poniendo ALIAS a las tablas                                                            ***************************************
 
 SELECT ALIAS_A.EMPNO, ALIAS_A.ENAME, ALIAS_A.JOB, ALIAS_A.DEPTNO, ALIAS_B.DNAME, ALIAS_B.LOC 
   FROM EMP  ALIAS_A, DEPT ALIAS_B
@@ -708,14 +708,14 @@ SELECT EMPNO, ENAME, JOB, EMP.DEPTNO, DNAME, LOC
 --FUNCIONES DE VALORES SIMPLES
 --Son funciones sencillas que trabajan con valores simples.
 -- Un valor simple es: un numero (6522,90), una variable  o una columna de una tabla
---Funcion ABS: Devuelve el valor absoluto de 'n'. El valor absoluto es siempre un numero positivo.
+--Funcion ABS: Devuelve el valor absoluto de 'n'. El valor absoluto es siempre un numero positivo.                                *********************
 -- Ejemplo: Obten el valor Absoluto del salario - 200000
 
-SELECT APELLIDO, SALARIO, SALARIO - 200000, ABS (SALARIO - 200000)
+SELECT APELLIDO, LOWER(APELLIDO) as APELLIDOlow, SALARIO, SALARIO - 200000, ABS (SALARIO - 200000)
   FROM EMPLE;
 
 --(vamos a utilizar la tabla DUAL, que solo tiene una tabla dummy para hacer los siguientes ejemplos)
---Funcion CEIL (n). Obtiene el valor entero inmediatamente superior o igual a 'n'
+--Funcion CEIL (n). Obtiene el valor entero inmediatamente superior o igual a 'n'                                                   ******************
 -- Ejemplo: Probamos con numeros positivos y negativos
 
 SELECT CEIL(20.3), CEIL(16), CEIL(-20.3), CEIL(-16)
