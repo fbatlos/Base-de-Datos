@@ -721,19 +721,19 @@ SELECT APELLIDO, LOWER(APELLIDO) as APELLIDOlow, SALARIO, SALARIO - 200000, ABS 
 SELECT CEIL(20.3), CEIL(16), CEIL(-20.3), CEIL(-16)
   FROM DUAL;
 
---Funcion FLOOR (n). Es lo opuesto a CEIL, devuelve el valor entero inmediatamente inferior o igual a 'n'
+--Funcion FLOOR (n). Es lo opuesto a CEIL, devuelve el valor entero inmediatamente inferior o igual a 'n'                            ***************************           **
 -- Ejemplo: Probamos con numeros positivos y negativos
 
 SELECT FLOOR(20.3), FLOOR(16), FLOOR(-20.3), FLOOR(-16)
   FROM DUAL;
 
---Funcion MOD (m,n). Devuelve el resto resultante de dividir m entre n
+--Funcion MOD (m,n). Devuelve el resto resultante de dividir m entre n                                                              ***********************
 
 SELECT MOD (11,4), MOD (10,-15), MOD (-10,-3), MOD (10.4,4.5)
   FROM DUAL;
 
 
---Funcion NVL (valor, expresion). Esta funcion se utiliza para sustituir un valor nulo
+--Funcion NVL (valor, expresion). Esta funcion se utiliza para sustituir un valor nulo                                           *****************************                 ********
 -- por otro valor. Si 'valor' es NULL, es sustituido por la 'expresion'; si no lo es,
 -- la funcion devuelve 'valor' NVL se puede usar con cualquier tipo de datos: numerico,
 -- caracter, tipo fecha, pero 'valor' y 'expresion' deben ser del mismo tipo.
@@ -742,15 +742,15 @@ SELECT MOD (11,4), MOD (10,-15), MOD (-10,-3), MOD (10.4,4.5)
 SELECT SALARIO, COMISION, SALARIO + COMISION
   FROM EMPLE;
 
--- Como vemos tenemos nulos en comision, podriamos aplicar la funcion NVL y el resultado seria:
+-- Como vemos tenemos nulos en comision, podriamos aplicar la funcion NVL y el resultado seria:                                   **************************************
 
-SELECT SALARIO, COMISION, SALARIO + NVL(COMISION,0)
+SELECT SALARIO, COMISION, SALARIO + NVL(COMISION,0) as NullSum
   FROM EMPLE;
   
 -- En este otro ejemplo de arriba, al aplicar a la comision la funcion NVL en la columna
 -- SALARIO+COMISION, no resultan valores nulos.
   
- --Funcion POWER(n, exponente). Calcula la potencia de un numero
+ --Funcion POWER(n, exponente). Calcula la potencia de un numero                                                                  *******************************
  -- Calcula el valor de n elevado a un exponente.
  
 
@@ -758,26 +758,27 @@ SELECT POWER (2,4), POWER (2,-4), POWER(4.5,2)
   FROM DUAL; 
   
   
- --Funcion ROUND(numero [,m]): Devuelve el valor del numero redondeado a m decimales.
+ --Funcion ROUND(numero [,m]): Devuelve el valor del numero redondeado a m decimales.                                                 ************************
  --Si m es negativo, el redondeo de digitos se lleva a cabo a la izquierda del punto decimal
  
  SELECT ROUND (1.56, 1), ROUND (1.56), ROUND(1.2234, 2), ROUND(1.2676, 3), ROUND (1.55, 1),ROUND (1.56)
   FROM DUAL; 
 
-
- --Funcion SIGN(valor): Indica el signo del valor
+SELECT ROUND (21.56, -1), ROUND (1.56), ROUND(231.2234, -2), ROUND(3331.2676, -3), ROUND (13.55, -1),ROUND (1.56)
+  FROM DUAL; 
+ --Funcion SIGN(valor): Indica el signo del valor                                                                                 *****************************
  
  SELECT SIGN (-5), SIGN (3), SIGN (0)
   FROM DUAL; 
   
 
- --Funcion SQRT(n): Raiz cuadrada de n.  (n no puede ser negativo)
+ --Funcion SQRT(n): Raiz cuadrada de n.  (n no puede ser negativo)                                                                    *****************************
  
  SELECT SQRT(25)
   FROM DUAL; 
     
   
-  --Funcion TRUNC(numero [,m]: 
+  --Funcion TRUNC(numero [,m]:                                                                                                  *****************************
   -- Trunca los numeros para que tengan un cierto numero de digitos de precision
 
   
@@ -788,7 +789,7 @@ SELECT POWER (2,4), POWER (2,-4), POWER(4.5,2)
  --FUNCIONES DE GRUPO DE VALORES
 -- Hay funciones estadisticas como SUM, AVG, COUNT que actuan sobre un grupo de filas
 -- 
---Funcion AVG: Calcula el valor medio (media aritmetica) ignorando los valores nulos
+--Funcion AVG: Calcula el valor medio (media aritmetica) ignorando los valores nulos                                                9**********************
 
 SELECT APELLIDO, SALARIO
   FROM EMPLE
@@ -800,8 +801,8 @@ SELECT AVG (SALARIO)
   FROM EMPLE
  WHERE DEPT_NO=10;
   
---Funcion COUNT (expresion | * ): Cuenta el numero de veces que la expresion
--- evalua algun dato con valor no nulo. Con la opcion * cuenta el numero de filas
+--Funcion COUNT (expresion | * ): Cuenta el numero de veces que la expresion                                                       *************************************
+-- evalua algun dato con valor no nulo. Con la opcion * cuenta el numero de filas                                             no pilla null
 
 
 SELECT * 
@@ -813,7 +814,7 @@ SELECT COUNT (*)
 SELECT COUNT (COMISION) 
  FROM EMPLE;
   
- --Funcion MAX(expresion): Calcula el maximo de la expresion
+ --Funcion MAX(expresion): Calcula el maximo de la expresion                                                                    **********************************
 SELECT MAX (SALARIO)
  FROM EMPLE;
  
@@ -848,17 +849,19 @@ SELECT MIN (SALARIO)
                     FROM EMPLE);
  
 
---Funcion SUM: Obtiene la suma de valores de la expresion distintos de nulos
+--Funcion SUM: Obtiene la suma de valores de la expresion distintos de nulos                                      *******************************************
  SELECT SUM (SALARIO)
  FROM EMPLE;
 
---Funcion VARIANCE: Obtiene la varianza de la expresion distintos de nulos
- SELECT VARIANCE (SALARIO)
- FROM EMPLE; 
+select SUM (SAL + NVL(COMM,0))
+from EMP;
+--Funcion VARIANCE: Obtiene la varianza de la expresion distintos de nulos                                       ***********************************
+ SELECT VARIANCE (SAL)
+ FROM EMP; 
 
 
 
--- DISTINCT en funciones de grupo
+-- DISTINCT en funciones de grupo **************************************************************************************************************** tener que verlo
 -- En todas las funciones de grupo , al indicar los argumentos se pueden emplear
 -- las clausulas DISTINCT y ALL, aunque no se suelen utilizar en las funciones
 -- AVG, SUM, MAX ni MIN. Sí es muy normal su uso en COUNT.
@@ -881,7 +884,7 @@ SELECT COUNT (DISTINCT OFICIO)
   FROM EMPLE;
 
 
---FUNCIONES DE LISTAS
+--FUNCIONES DE LISTAS                                                                                              ********************************************
 -- Trabajan sobre un grupo de columnas dentro de una misma fila.
 -- Comparan los valores de cada una de las columnas en el interior
 -- de una fila para obtener el mayor o menor valor de la lista.
@@ -902,7 +905,7 @@ SELECT *
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------    -------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------  
------- FUNCIONES DE CADENAS DE CARACTERES   ------
+------ FUNCIONES DE CADENAS DE CARACTERES   ------     *************************************************************************************************
 -- Trabajan con datos de tipo CHAR o VARCHAR2.
 -- Estos datos incluyen cualquier caracter alfanumerico:
 -- letras, numeros, y caracteres especiales. Los caracteres
@@ -949,7 +952,7 @@ SELECT CHR('75'), CHR('65')
  SELECT INITCAP ('oRACle Y sqL') "Tipo Titulo"
    FROM DUAL;  
 
--- Funcion LPAD (cad1, n [,cad2]): Añade caracteres a la izquierda de cad1
+-- Funcion LPAD (cad1, n [,cad2]): Añade caracteres a la izquierda de cad1 ***********************************************************
 -- hasta que alcance una cierta longitud n; cad2 es la cadena con que se rellena por la izquierda.
 -- cad1 puede ser una columna de una tabla o cualquier literal. 
 -- Si cad2 se suprime, asume como caracter de relleno el blanco.
@@ -963,16 +966,16 @@ SELECT CHR('75'), CHR('65')
  SELECT LPAD (NOMBRE_ALUMNO, 30) "Rellena por izquierda"
    FROM NOTAS_ALUMNOS;     
 
--- Funcion RPAD (cad1, n [,cad2]): Añade caracteres a la derecha de cad1
+-- Funcion RPAD (cad1, n [,cad2]): Añade caracteres a la derecha de cad1****************************************************************************
 -- hasta que alcance una cierta longitud n; cad2 es la cadena con que se rellena por la derecha.
 -- cad1 puede ser una columna de una tabla o cualquier literal. 
 -- Si cad2 se suprime, asume como caracter de relleno el blanco.
 -- Padding=rellenar
 
- SELECT RPAD (NOMBRE_ALUMNO, 30,'.') "Rellena por derecha"
+ SELECT RPAD (NOMBRE_ALUMNO, 26,'.') "Rellena por derecha"
   FROM NOTAS_ALUMNOS;  
   
--- Funcion LTRIM (cad [,set]): Suprime un conjunto de caracteres a la izquierda de cad
+-- Funcion LTRIM (cad [,set]): Suprime un conjunto de caracteres a la izquierda de cad*****************************************************
 -- set es el conjunto de caracteres a suprimir por la izquierda.
 -- Si set se omite, devuelve la misma cadena.
 -- Por defecto, si la cadena contiene blancos a la izquierda y se omite el segundo parametro (set)
@@ -986,7 +989,7 @@ SELECT LTRIM ('hola', 'ho')
   FROM DUAL;
   
 
--- Funcion RTRIM (cad [,set]): Suprime un conjunto de caracteres a la derecha de cad
+-- Funcion RTRIM (cad [,set]): Suprime un conjunto de caracteres a la derecha de cad*********************************************************************
 -- set es el conjunto de caracteres a suprimir por la derecha.
 -- Si set se omite, devuelve la misma cadena.
 -- Por defecto, si la cadena contiene blancos a la derecha y se omite el segundo parametro (set)
@@ -1002,7 +1005,7 @@ SELECT LTRIM ('hola', 'ho')
   FROM DUAL;
   
   
--- Funcion REPLACE(cad, cadena_busqueda [,cadena_sustitucion]): 
+-- Funcion REPLACE(cad, cadena_busqueda [,cadena_sustitucion]): ******************************************************************
 -- Sustituye un caracter con 0  o varios caracteres
 -- Devuelve cad con cada ocurrencia de cadena_busqueda
 -- sustituida por cadena_sustitucion
@@ -1013,11 +1016,14 @@ SELECT LTRIM ('hola', 'ho')
 -- Si no ponemos la dadena de sustitucion, simplemente elimina ese caracter
   SELECT REPLACE ('BLANCO Y NEGRO', 'O')
   FROM DUAL;
+    
+  SELECT REPLACE ('BLANCO Y NEGRO', ' ')
+  FROM DUAL;
   
   SELECT REPLACE ('BLANCO Y NEGRO', 'L')
   FROM DUAL;
   
--- Funcion SUBSTR(cad, m [,n]): 
+-- Funcion SUBSTR(cad, m [,n]): *****************************************************************************************
 -- Obtiene parte de una cadena.
 -- Devuelve la subcadena de 'cad', que abarca desde la posicion indicada en m
 -- hasta tantos caracteres como indique el numero 'n'. 
@@ -1054,7 +1060,7 @@ SELECT SUBSTR ('ABCDEFG', 4)
 -- Devuelve 'cad1' con los caracteres encontrados en 'cad2' y sustituidos de 'cad3'
 -- Cualquier caracter que  no esté en la cadea 'cad2' permanece como estaba.
 
--- Ejemplo:  A partir de la cadena 'LOS PILARES DE LA TIERRA', sustituye la 'A' por la 'a'
+-- Ejemplo:  A partir de la cadena 'LOS PILARES DE LA TIERRA', sustituye la 'A' por la 'a'***************************************************************
 -- la 'E' por la 'e', la 'I' por la 'i', la 'O' por la 'o', la 'U' por la 'u'
 
 SELECT TRANSLATE ('LOS PILARES DE LA TIERRA', 'AEIOU', 'aeiou')
@@ -1082,7 +1088,7 @@ SELECT ASCII ('andaluz')
 SELECT ASCII ('a') 
   FROM DUAL;
 
---Funcion INSTR (cad1,cad2 [comienzo, [,m]])
+--Funcion INSTR (cad1,cad2 [comienzo, [,m]])                                          **************************************************
 -- Esta funcion busca un conjunto de caracteres en una cadena.
 -- Devuelve la posicion de la 'm_ésima' ocurrencia de cad2 en cad1,
 -- empezando la busqueda en la posicion comienzo.
@@ -1093,6 +1099,10 @@ SELECT ASCII ('a')
 
 SELECT INSTR ('II VUELTA CICLISTA A TALAVERA', 'TA', 3, 2)
   FROM DUAL;
+
+SELECT INSTR ('TA VUELTA CICLISTA A TALAVERA', 'TA', 1, 2)
+  FROM DUAL;
+
 -- (en este ejemplo, empezando por la posicion 3, 
 --   devuelve la posicion de la segunda vez que aparece la cadena 'TA'
 
@@ -1108,12 +1118,12 @@ SELECT INSTR ('II VUELTA CICLISTA A TALAVERA', 'A', -1)
   FROM DUAL;
 
 
---Funcion LENGTH(cad): Devuelve el numero de caracteres de la cadena cad
+--Funcion LENGTH(cad): Devuelve el numero de caracteres de la cadena cad ***********************************************************************************
 -- Ejemplo: Devuelve el numero de caracteres de los apellidos de la table Empleados:
  SELECT APELLIDO, LENGTH (APELLIDO)
    FROM EMPLE;
 
--------------------------------------------------------
+-------------------------------------------------------                                                   *****************************************************
 ------ FUNCIONES DE CADENAS DE MANEJO DE FECHAS  ------
 -------------------------------------------------------
 
@@ -1147,7 +1157,7 @@ SELECT MONTHS_BETWEEN (SYSDATE, FECHA_ALT)
 SELECT (MONTHS_BETWEEN (SYSDATE, FECHA_ALT)/12)
   FROM EMPLE;
   
--- Calculo de la edad, para alguien que nació el 11/08/1995:
+-- Calculo de la edad, para alguien que nació el 11/08/1995:                           ********
 SELECT TRUNC (MONTHS_BETWEEN (SYSDATE, '11/08/1998')/12) "Edad Actual"
   FROM DUAL;
   
