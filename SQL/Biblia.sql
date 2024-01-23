@@ -1100,8 +1100,8 @@ SELECT ASCII ('a')
 SELECT INSTR ('II VUELTA CICLISTA A TALAVERA', 'TA', 3, 2)
   FROM DUAL;
 
-SELECT INSTR ('TA VUELTA CICLISTA A TALAVERA', 'TA', 1, 2)
-  FROM DUAL;
+SELECT INSTR (AUTOR, ',')
+  FROM LIBROS;
 
 -- (en este ejemplo, empezando por la posicion 3, 
 --   devuelve la posicion de la segunda vez que aparece la cadena 'TA'
@@ -1182,7 +1182,7 @@ SELECT NEXT_DAY(SYSDATE, 'JUEVES')
 -- En estas mascaras es posible incluir literales definidos
 -- por el usuario encerrados en comillas dobles.
 -- (para detalle: buscar mascaras de control de formato de fechas en ORACLE).
-SELECT FECHA_ALT,   TO_CHAR(FECHA_ALT, 'month DD, YYYY') 
+SELECT FECHA_ALT,   TO_CHAR(FECHA_ALT, ' month DD, YYYY') 
  FROM EMPLE;
  
 -- Por defecto el formato para la fecha viene definido por el parametro NLS_TERRITORY,
