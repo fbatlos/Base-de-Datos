@@ -187,7 +187,42 @@ ORDER BY LENGTH (TITULO) DESC;
 
 --14 --A partir de la tabla NACIMIENTOS, realiza una consulta que obtenga las columnas NOMBRE, FECHANAC, FECHA_FORMATEADA donde FECHA_FORMATEADA tiene el siguiente formato: "Nació el 12 de mayo de 1982". 
 
-SELECT* FROM NACIMIENTOS;
 
 SELECT NOMBRE , FECHANAC , 'Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY') as  FECHA_FORMATEADA 
+FROM NACIMIENTOS;
+
+--NOMBRE          FECHANAC FECHA_FORMATEADA
+--------------- -------- ---------------------------------------------------------------
+--PEDRO           12/05/82 Nació el 12 de mayo      de 1982
+--JUAN            23/08/82 Nació el 23 de agosto    de 1982
+--MARIA           02/02/83 Nació el 02 de febrero   de 1983
+--CLARA           20/05/85 Nació el 20 de mayo      de 1985
+
+
+
+--15 --Dada la tabla LIBRERIA, haz una consulta que visualice el tema, el último carácter del tema que no sea blanco y el nº de caracteres de tema (sin contar los blancos de la derecha) ordenados por tema.
+
+
+Select tema ,substr(tema,instr(tema,' ')-1) as UltiCaracter,instr(tema,' ')-1 as   --*** mirar bien el instr
+from libreria 
+order by (tema) DESC;
+
+--TEMA            ULTICARACTER                                                 INSTR(TEMA,'')-1AS--***MIRARBIENELINSTR
+--------------- ------------------------------------------------------------ ---------------------------------------
+--Informatica     a                                                                                                 11
+--Economia        a                                                                                                  8
+--Deportes        s                                                                                                  8
+--Filosofia       a                                                                                                  9
+--Dibujo          o                                                                                                  6
+--Jardineria      a                                                                                                 10
+--Biologia        a                                                                                                  8
+--Geologia        a                                                                                                  8
+--Sociedad        d                                                                                                  8
+--Labores         s                                                                                                  7
+--Medicina        a                                                                                                  8
+
+
+--16--A partir de la tabla NACIMIENTOS, realiza una consulta que muestre NOMBRE seguido de su fecha de nacimiento formateada (quita los blancos de nombre).
+
+SELECT NOMBRE , FECHANAC , RPAD('Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY'))
 FROM NACIMIENTOS;
