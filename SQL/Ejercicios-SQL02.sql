@@ -224,5 +224,90 @@ order by (tema) DESC;
 
 --16--A partir de la tabla NACIMIENTOS, realiza una consulta que muestre NOMBRE seguido de su fecha de nacimiento formateada (quita los blancos de nombre).
 
-SELECT NOMBRE , FECHANAC , RPAD('Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY'))
+SELECT NOMBRE, REPLACE(('Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY')),' ')
 FROM NACIMIENTOS;
+
+--NOMBRE          REPLACE(('NACIóEL'||TO_CHAR(FECHANAC,'DD')||'DE'||TO_CHAR(FECHA
+--------------- ---------------------------------------------------------------
+--PEDRO           Nacióel12demayode1982
+--JUAN            Nacióel23deagostode1982
+--MARIA           Nacióel02defebrerode1983
+--CLARA           Nacióel20demayode1985
+
+--17--Convierte la cadena '01072012' a fecha y visualiza el nombre del mes en mayúsculas (utiliza la tabla DUAL).
+
+SELECT UPPER(TO_CHAR(TO_DATE('01072012'),'month')) as Mes
+FROM DUAL;
+
+--MES
+----------------------------------------
+--JULIO
+
+--18 -- Visualiza aquellos temas de la tabla LIBRERIA cuyos ejemplares sean 7 con el nombre de tema 'SEVEN'; el resto de temas que no tengan 7 ejemplares se visualizará como están. Ejemplo:
+
+SELECT TEMA, ejemplares ,DECODE(ejemplares , '7' , 'SEVEN' ,TEMA)
+FROM LIBRERIA;
+
+SELECT*from LIBRERIA;
+
+
+--
+--TEMA            EJEMPLARES DECODE(EJEMPLAR
+--------------- ---------- ---------------
+--Informatica             15 Informatica
+--Economia                10 Economia
+--Deportes                 8 Deportes
+--Filosofia                7 SEVEN
+--Dibujo                  10 Dibujo
+--Medicina                16 Medicina
+--Biologia                11 Biologia
+--Geologia                 7 SEVEN
+--Sociedad                 9 Sociedad
+--Labores                 20 Labores
+--Jardineria               6 Jardineria
+
+
+--19--A partir de la tabla EMPLE, obtener el apellido de los empleados que lleven más de 15 años trabajando.
+
+SELECT APELLIDO,TRUNC (MONTHS_BETWEEN (SYSDATE,FECHA_ALT)/12)
+FROM EMPLE;
+
+--APELLIDO   TRUNC(MONTHS_BETWEEN(SYSDATE,FECHA_ALT)/12)
+---------- -------------------------------------------
+--SANCHEZ                                             43
+--ARROYO                                              43
+--SALA                                                42
+--JIMENEZ                                             42
+--MARTIN                                              42
+--NEGRO                                               42
+--CEREZO                                              42
+--GIL                                                 42
+--REY                                                 42
+--TOVAR                                               42
+--ALONSO                                              42
+--JIMENO                                              42
+--FERNANDEZ                                           42
+--MU?OZ                                               42
+
+
+--20--Selecciona el apellido de los empleados que llevan más de 18 años trabajando en el departamento 'VENTAS'.
+
+SELECT APELLIDO,TRUNC (MONTHS_BETWEEN (SYSDATE,FECHA_ALT)/12)
+FROM EMPLE EM , DEPART DE
+WHERE  EM.DEPT_NO = DE.DEPT_NO
+AND DNOMBRE = 'VENTAS';
+
+--APELLIDO   TRUNC(MONTHS_BETWEEN(SYSDATE,FECHA_ALT)/12)
+---------- -------------------------------------------
+--ARROYO                                              43
+--SALA                                                42
+--MARTIN                                              42
+--NEGRO                                               42
+--TOVAR                                               42
+--JIMENO                                              42
+
+--21--Visualiza el apellido, el salario, y el nº de departamento de los empleados cuyo salario sea el mayor de su departamento.
+
+SELECT  DEPT_NO , APELLIDO 
+FROM EMPLE
+;
