@@ -307,7 +307,33 @@ AND DNOMBRE = 'VENTAS';
 --JIMENO                                              42
 
 --21--Visualiza el apellido, el salario, y el nº de departamento de los empleados cuyo salario sea el mayor de su departamento.
+SELECT APELLIDO,SALARIO,DEPT_NO
+FROM EMPLE E
+ WHERE SALARIO    =   ( SELECT MAX (SALARIO)
+					  FROM EMPLE
+					 WHERE DEPT_NO = E.DEPT_NO);
 
-SELECT  DEPT_NO , APELLIDO 
-FROM EMPLE
-;
+--APELLIDO      SALARIO    DEPT_NO
+---------- ---------- ----------
+--NEGRO          370500         30
+--GIL            390000         20
+--REY            650000         10
+--FERNANDEZ      390000         20
+
+
+--22--Visualiza el apellido, el salario, y el nº de departamento de los empleados cuyo salario supere a la media de su departamento.
+
+SELECT APELLIDO,SALARIO,DEPT_NO
+FROM EMPLE E
+ WHERE SALARIO    >=   ( SELECT AVG (SALARIO)
+					  FROM EMPLE
+					 WHERE DEPT_NO = E.DEPT_NO);
+
+--APELLIDO      SALARIO    DEPT_NO
+---------- ---------- ----------
+--ARROYO         208000         30
+--JIMENEZ        386750         20
+--NEGRO          370500         30
+--GIL            390000         20
+--REY            650000         10
+--FERNANDEZ      390000         20
