@@ -294,7 +294,7 @@ SELECT*from LIBRERIA;
 --Labores                 20 Labores
 --Jardineria               6 Jardineria
 
---Nota : 
+--Nota : 10
 
 --19--A partir de la tabla EMPLE, obtener el apellido de los empleados que lleven más de 15 años trabajando.
 
@@ -318,6 +318,7 @@ FROM EMPLE;
 --FERNANDEZ                                           42
 --MU?OZ                                               42
 
+--Nota : 10
 
 --20--Selecciona el apellido de los empleados que llevan más de 18 años trabajando en el departamento 'VENTAS'.
 
@@ -334,6 +335,8 @@ AND DNOMBRE = 'VENTAS';
 --NEGRO                                               42
 --TOVAR                                               42
 --JIMENO                                              42
+
+--Nota : 10
 
 --21--Visualiza el apellido, el salario, y el nº de departamento de los empleados cuyo salario sea el mayor de su departamento.
 SELECT APELLIDO,SALARIO,DEPT_NO
