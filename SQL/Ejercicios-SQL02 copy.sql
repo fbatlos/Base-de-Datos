@@ -143,6 +143,8 @@ FROM MISTEXTOS;
 --sistemas digitales
 --manual de c
 
+--Nota : 10
+
 
 --10 --Dada la tabla LIBROS, escribe la sentencia SELECT que visualice dos columnas, una con el AUTOR y otra con el apellido del autor.
 
@@ -157,6 +159,7 @@ FROM LIBROS;
 --MARSE, JUAN            MARSE
 --TORRENTE B., GONZALO   TORRENTE B.
 
+--Nota : 10
 
 --11-Escribe la sentencia SELECT que visualice dos columnas, una con el AUTOR y otra columna con el nombre del autor (sin el apellido) de la tabla LIBROS.
 
@@ -172,7 +175,9 @@ FROM LIBROS;
  --JUAN                                                                                    --MARSE, JUAN
  --GONZALO                                                                                 --TORRENTE B., GONZALO
 
---12--A partir de la tabla LIBROS, realiza una consulta que visualice en una columna, primero el nombre del autor y, luego, el apellido.
+--Nota : 10
+
+--12--A partir de la tabla LIBROS, realiza una consulta que visualice en una columna, primero el nombre del autor y, luego, el apellido. 
 
 Select SUBSTR(AUTOR , INSTR (AUTOR, ',')+1) AS NOMBRE , SUBSTR(AUTOR , 1,INSTR (AUTOR, ',')-1) AS APELLIDO
 FROM LIBROS;
@@ -185,7 +190,7 @@ FROM LIBROS;
  --JUAN                                                                                    MARSE
  --GONZALO                                                                                 TORRENTE B.
 
-
+--Nota : 7,5
 
 --13--A partir de la tabla LIBROS, realiza una consulta que aparezcan los títulos ordenados por su nº de caracteres.
 
@@ -202,10 +207,12 @@ ORDER BY LENGTH (TITULO) DESC;
 --LA MIRADA DEL OTRO
 --LA COLMENA
 
+--Nota : 10
+
 --14 --A partir de la tabla NACIMIENTOS, realiza una consulta que obtenga las columnas NOMBRE, FECHANAC, FECHA_FORMATEADA donde FECHA_FORMATEADA tiene el siguiente formato: "Nació el 12 de mayo de 1982". 
 
 
-SELECT NOMBRE , FECHANAC , 'Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY') as  FECHA_FORMATEADA 
+SELECT NOMBRE , FECHANAC , 'Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'FMmonth')|| ' de ' || TO_CHAR(FECHANAC,'YYYY') as  FECHA_FORMATEADA    --poner FM para que salga junto
 FROM NACIMIENTOS;
 
 --NOMBRE          FECHANAC FECHA_FORMATEADA
@@ -215,7 +222,7 @@ FROM NACIMIENTOS;
 --MARIA           02/02/83 Nació el 02 de febrero   de 1983
 --CLARA           20/05/85 Nació el 20 de mayo      de 1985
 
-
+--Nota : 10
 
 --15 --Dada la tabla LIBRERIA, haz una consulta que visualice el tema, el último carácter del tema que no sea blanco y el nº de caracteres de tema (sin contar los blancos de la derecha) ordenados por tema.
 
@@ -238,10 +245,11 @@ order by (tema) DESC;
 --Labores         s                                                                                                  7
 --Medicina        a                                                                                                  8
 
+--Nota : 10 
 
 --16--A partir de la tabla NACIMIENTOS, realiza una consulta que muestre NOMBRE seguido de su fecha de nacimiento formateada (quita los blancos de nombre).
 
-SELECT NOMBRE, REPLACE(('Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY')),' ')
+SELECT NOMBRE, REPLACE(('Nació el ' || TO_CHAR(FECHANAC, 'DD')|| ' de ' || TO_CHAR(FECHANAC,'month')||'de ' || TO_CHAR(FECHANAC,'YYYY')),' ')  -- Puedes hacerlo direcctamente y con catena
 FROM NACIMIENTOS;
 
 --NOMBRE          REPLACE(('NACIóEL'||TO_CHAR(FECHANAC,'DD')||'DE'||TO_CHAR(FECHA
@@ -250,6 +258,8 @@ FROM NACIMIENTOS;
 --JUAN            Nacióel23deagostode1982
 --MARIA           Nacióel02defebrerode1983
 --CLARA           Nacióel20demayode1985
+
+--Nota : 5 
 
 --17--Convierte la cadena '01072012' a fecha y visualiza el nombre del mes en mayúsculas (utiliza la tabla DUAL).
 
@@ -260,16 +270,17 @@ FROM DUAL;
 ----------------------------------------
 --JULIO
 
+--Nota : 10
+
 --18 -- Visualiza aquellos temas de la tabla LIBRERIA cuyos ejemplares sean 7 con el nombre de tema 'SEVEN'; el resto de temas que no tengan 7 ejemplares se visualizará como están. Ejemplo:
 
-SELECT TEMA, ejemplares ,DECODE(ejemplares , '7' , 'SEVEN' ,TEMA)
+SELECT TEMA, ejemplares ,DECODE(ejemplares , '7' , 'SEVEN' ,TEMA) as Codigo
 FROM LIBRERIA;
 
 SELECT*from LIBRERIA;
 
-
 --
---TEMA            EJEMPLARES DECODE(EJEMPLAR
+--TEMA            EJEMPLARES CODIGO
 --------------- ---------- ---------------
 --Informatica             15 Informatica
 --Economia                10 Economia
@@ -283,6 +294,7 @@ SELECT*from LIBRERIA;
 --Labores                 20 Labores
 --Jardineria               6 Jardineria
 
+--Nota : 
 
 --19--A partir de la tabla EMPLE, obtener el apellido de los empleados que lleven más de 15 años trabajando.
 
