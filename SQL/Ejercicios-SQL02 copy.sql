@@ -352,6 +352,7 @@ FROM EMPLE E
 --REY            650000         10
 --FERNANDEZ      390000         20
 
+--Nota : 10
 
 --22--Visualiza el apellido, el salario, y el nº de departamento de los empleados cuyo salario supere a la media de su departamento.
 
@@ -369,3 +370,7 @@ FROM EMPLE E
 --GIL            390000         20
 --REY            650000         10
 --FERNANDEZ      390000         20
+
+--Nota : 10
+
+----Nota FInal = 9.55
