@@ -1359,7 +1359,7 @@ ORDER BY COUNT(*) ASC;
 
 /* Cuando usamos la clausula ORDER BY con columnas Y funciones de grupo,
 hemos de tener en cuena que ésta se ejecuta detrás de las cláusulas WHERE,
-GROUP BY y HAVING. En ORDER BY podemos especificar funciones de grupo,
+GROUP BY y HAVING. En ORDER BY podemos especificar funciones de grupo,        **************Funiciones de grupo vip
 columnas de GROUP BY o su combinación.
 
 La evaluación de las clausulas en tiempo de ejecución se efectua
@@ -1381,6 +1381,7 @@ SELECT   DEPT_NO,
          MIN(SALARIO) "Minimo"
     FROM EMPLE
 GROUP BY DEPT_NO;
+--HAVING Min(SALARIO) > 110000;                       --Poner el having debajo de group by.***********************************
 
 
 -- Lo normal es que nos pidan que la SALIDA esté FORMATEADA, 
