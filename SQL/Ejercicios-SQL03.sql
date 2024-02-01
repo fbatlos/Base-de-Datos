@@ -1,3 +1,4 @@
+--Fco Batista De Los Santos
 --1--Visualizar los departamentos en los que el salario medio es mayor o igual que la media de todos los salarios.
 select dept_no, avg(SALARIO) 
 from EMPLE 
