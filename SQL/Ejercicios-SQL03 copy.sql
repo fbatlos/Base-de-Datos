@@ -1,4 +1,5 @@
---Fco Batista De Los Santos 
+--Fco Batista De Los Santos --- Nota final = 
+
 
 --1--Visualizar los departamentos en los que el salario medio es mayor o igual que la media de todos los salarios.
 select dept_no, avg(SALARIO) 
@@ -12,6 +13,7 @@ having avg(SALARIO) >= (select avg(SALARIO)
 --      20       282750
 --      10   379166,667
 
+--Nota = 10
 
 --2--A partir de la tabla EMPLE, visualizar el nº de vendedores del departamento 'VENTAS'.
 
