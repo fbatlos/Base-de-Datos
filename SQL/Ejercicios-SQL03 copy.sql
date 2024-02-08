@@ -29,6 +29,7 @@ having DEPT_NO = (SELECT DEPT_NO
 --------------
 --           4
 
+--Nota : 10
 
 --3--Partiendo de la tabla EMPLE, visualizar por cada oficio de los empleados del departamento 'VENTAS' la suma de sus salarios.
 
@@ -45,6 +46,7 @@ HAVING DEPT_NO = (SELECT DEPT_NO
 --    30     123500 EMPLEADO
 --    30     728000 VENDEDOR
 
+--Nota : 10
 
 --4--Seleccionar aquellos apellidos de la tabla EMPLE cuyo salario sea igual a la media de los salarios en su departamento.
 
@@ -55,6 +57,8 @@ having avg(SALARIO) = (select avg(SALARIO)
                         from EMPLE);
 
 --NADA
+
+--Nota : 10
 
 --5--A partir de la tabla EMPLE, visualizar el nº de empleados de cada departamento cuyo oficio sea 'EMPLEADO'.
 
@@ -69,6 +73,8 @@ having OFICIO =  'EMPLEADO';
 --          2         20
 --          1         30
 --          1         10
+
+--Nota : 10
 
 --6--Desde la tabla EMPLE, visualizar el departamento que tenga más empleados cuyo oficio sea 'EMPLEADO'.
 
@@ -85,6 +91,8 @@ AND COUNT(OFICIO) = (SELECT MAX(COUNT(*))
 ----   ------ ----------
  --        2         20
 
+ --Nota: 10
+
 --7--A partir de las tablas EMPLE y DEPART, visualizar el código y el nombre del departamento que tenga más empleados cuyo oficio sea 'EMPLEADO'.
 
 select dept_no,dnombre 
@@ -95,13 +103,25 @@ where dept_no=(select dept_no
                 group by dept_no 
                 having count(*)=(select max(count(*)) 
                                     from emple 
-                                    where oficio='EMPLEADO' ´+
+                                    where oficio='EMPLEADO'
                                     group by dept_no));
+
+
+select e.dept_no , dnombre
+from depart d, emple e
+where e.dept_no = d.dept_no
+and oficio = 'EMPLEADO'
+group by e.dept_no,dnombre
+having count(*) = (select max(count(*)) 
+                    from emple 
+                    where oficio='EMPLEADO'
+                    group by dept_no);
 
 --   DEPT_NO DNOMBRE
 --  -------- --------------
 --    20 INVESTIGACION
 
+--Nota : 10
 
 --8--Buscar los departamentos que tienen más de dos personas trabajando en el mismo oficio.
 
@@ -114,6 +134,7 @@ HAVING COUNT(OFICIO) > 2;
 ---  ------- --------------- ----------
 --VENDEDOR                 4         30
 
+--Nota : 10
 
 --9--Dada la tabla LIBRERIA, visualizar por cada estante la suma de los ejemplares.
 
@@ -129,6 +150,7 @@ GROUP BY estante;
 --             33
 --              6
 
+--Nota : 10
 
 --10--Visualizar el estante con más ejemplares de la tabla LIBRERIA.
 
