@@ -1,4 +1,4 @@
---Fco Batista De Los Santos --- Nota final = 
+--Fco Batista De Los Santos --- Nota final = 10
 
 
 --1--Visualizar los departamentos en los que el salario medio es mayor o igual que la media de todos los salarios.
@@ -162,6 +162,8 @@ WHERE EJEMPLARES = (SELECT max(EJEMPLARES)
 ---
 --B
 
+--Nota : 10 
+
 --11--Visualizar los diferentes estantes de la tabla LIBRERIA ordenados descendentemente por estante.
 
 SELECT DISTINCT estante
@@ -176,6 +178,7 @@ ORDER BY estante DESC;
 --B
 --A
 
+--Nota : 10
 
 --12--Listar cuantos temas tiene cada estante.
 
@@ -192,6 +195,8 @@ ORDER BY COUNT(TEMA) ASC;
 --          3 C
 --          3 A
 
+--Nota : 10 , esta igual solo que yo los ordene por gusto personal .
+
 --13--Visualizar los estantes que tengan tres temas.
 
 SELECT estante
@@ -204,3 +209,6 @@ HAVING COUNT(TEMA) = 3;
 ---
 --A
 --C
+
+--Nota : 10 DELETE
+
