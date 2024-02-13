@@ -3,10 +3,11 @@
 
 SELECT
     C.NOMBRE,
-	count(distinct P.especialidad)
+    especialidad,
+	count( P.especialidad)
 FROM CENTROS C
     LEFT JOIN PROFESORES P ON C.COD_CENTRO = P.COD_CENTRO 
-group by C.NOMBRE;
+group by C.NOMBRE , especialidad;
 
 
 --2--A partir de las tablas PERSONAL y CENTROS,obtener por cada centro el código, nombre y nº de empleados. Si el centro carece de empleados, igual que en la consulta anterior (OUTER JOIN).
