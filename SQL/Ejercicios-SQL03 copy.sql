@@ -1,4 +1,4 @@
---Fco Batista De Los Santos --- Nota final = 10
+--Fco Batista De Los Santos --- Nota final = 9,42
 
 
 --1--Visualizar los departamentos en los que el salario medio es mayor o igual que la media de todos los salarios.
@@ -156,13 +156,15 @@ GROUP BY estante;
 
 SELECT estante
 FROM LIBRERIA
-WHERE EJEMPLARES = (SELECT max(EJEMPLARES)
-                    from LIBRERIA);
+group BY EJEMPLARES,estante 
+having EJEMPLARES = (SELECT max(sum(EJEMPLARES))
+                    from LIBRERIA
+                    group by estante);
 --E
 ---
 --B
 
---Nota : 10 
+--Nota : 2.5 
 
 --11--Visualizar los diferentes estantes de la tabla LIBRERIA ordenados descendentemente por estante.
 
