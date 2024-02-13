@@ -1,4 +1,4 @@
---Fco Batista De Los Santos 
+--Fco Batista De Los Santos  Nota Final : 
 --1 ---A partir de las tablas PROFESORES y CENTROS, realizar una consulta en la que aparezcan por cada centro y cada especialidad el nº de profesores que hay. Si el centro no tiene profesores debe aparecer un 0 en la columna nº de profesores (OUTER JOIN).
 
 SELECT
@@ -9,6 +9,7 @@ FROM CENTROS C
     LEFT JOIN PROFESORES P ON C.COD_CENTRO = P.COD_CENTRO 
 group by C.NOMBRE , especialidad;
 
+--Nota : 10
 
 --2--A partir de las tablas PERSONAL y CENTROS,obtener por cada centro el código, nombre y nº de empleados. Si el centro carece de empleados, igual que en la consulta anterior (OUTER JOIN).
 SELECT
@@ -30,7 +31,8 @@ from PROFESORES;
 
 --4--A partir de la tabla PERSONAL, obtener por cada función el nº de empleados.
 
-select Funcion , Count(Distinct Apellidos)
+select Funcion ,
+     Count(Distinct Apellidos)
 from PERSONAL
 group by Funcion;
 
