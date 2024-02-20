@@ -6,6 +6,8 @@
 -- En moodle teneis como conectaros con este usuario y como cargar las tablas correspondiente
 
 
+--SUBSTR(NOMBRE_MI , 1,INSTR (NOMBRE_MI, ',')-1) Apellido y +1 nombre (Hay que quitar el 1 del medio)
+
 ----------------------- A. SENTENCIA    SELECT  ----------------------------------------------------------------------------------------------
 
 SELECT [DISTINCT | ALL] {* | <expr1>[, <expr2>] ...}
