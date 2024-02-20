@@ -8,6 +8,9 @@
 
 --SUBSTR(NOMBRE_MI , 1,INSTR (NOMBRE_MI, ',')-1) Apellido y +1 nombre (Hay que quitar el 1 del medio)
 
+--SELECT CONCAT(UPPER(SUBSTRING(NOMBRE_GR, 1, 1)), LOWER(SUBSTRING(NOMBRE_GR, 2))) AS NombreCapitalizado
+--FROM TU_TABLA;
+
 ----------------------- A. SENTENCIA    SELECT  ----------------------------------------------------------------------------------------------
 
 SELECT [DISTINCT | ALL] {* | <expr1>[, <expr2>] ...}
