@@ -60,7 +60,8 @@ COD_CENTRO        DNI APELLIDOS                      ESPECIALIDAD
 INSERT INTO PROFESORES (APELLIDOS, ESPECIALIDAD, COD_CENTRO)
 VALUES ('Coronado Garcia, Tomas', 'INFORMATICA', 22);
 
-
+INSERT INTO PROFESORES                                 --Al no decir columna , espera dato en todas y en orden , pero se puede dejar en blanco si lo permite
+VALUES (22 , ,'Coronado Garcia, Tomas', 'INFORMATICA');
 
 
 
@@ -176,7 +177,7 @@ SQL> SELECT * FROM EMPLE30;
 
 ninguna fila seleccionada
  
--- Y ahora insertamos los registros de la tabla EMPLE 
+-- Y ahora insertamos los registros de la tabla EMPLE                   Hacer primero el select para ver que nos da.
 -- cuyo departamento es 30 en la tabla EMPLE30
  
  INSERT INTO  EMPLE30 (EMP_NO,APELLIDO, OFICIO, DIR, FECHA_ALT, SALARIO, COMISION, DEPT_NO)	
@@ -284,11 +285,11 @@ INSERT INTO EMPLE
 SELECT DISTINCT 1111,'GARCIA', 'ANALISTA', 7566, SYSDATE, 2000, 120, DEPT_NO
 FROM EMPLE 
 WHERE DEPT_NO = ( SELECT DEPT_NO 
-                              FROM EMPLE              
-							GROUP BY DEPT_NO
-                           HAVING COUNT(*) = ( SELECT MAX(COUNT(*)) 
-						                         FROM EMPLE 
-												 GROUP BY DEPT_NO) );
+                FROM EMPLE              
+		GROUP BY DEPT_NO
+                HAVING COUNT(*) = ( SELECT MAX(COUNT(*)) 
+				        FROM EMPLE 
+					GROUP BY DEPT_NO) );
 
 
 1 fila creada.
@@ -326,11 +327,12 @@ en la tabla EMPLE.
 Los restantes datos del nuevo empleado serán los mismos que los de 'GIL' 
 y la fecha de alta será la fecha actual: */
 
-
+--Aprender bien esto.
 INSERT INTO EMPLE 
 SELECT 1112,'QUIROGA', OFICIO, DIR, SYSDATE, SALARIO,COMISION,DEPT_NO
 FROM EMPLE WHERE APELLIDO = 'GIL';
 
+--Forma 2 (Menos facil a no ser de que te pida datos de otros pibes.)
 INSERT INTO EMPLE 
 VALUES (
 1112,
