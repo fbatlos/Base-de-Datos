@@ -245,11 +245,12 @@ COD_CENTRO        DNI APELLIDOS                      ESPECIALIDAD
  DESC PROFESORES;
 
 INSERT INTO PROFESORES
-VALUES (
-    from PROFESORES
-    where 1 = (SELECT )
-
-, 8790055 , 'Clara Salas' ,'IDIOMA' );
+SELECT DISTINCT P.COD_CENTRO , 8790055 , 'Clara Salas' ,'IDIOMA'
+        from CENTROS C join PERSONAL P in C.COD_CENTRO = P.COD_CENTRO
+        where 1 = (SELECT (COUNT(*))
+                FROM personal
+                WHERE FUNCION = 'ADMINISTRATIVO'
+                GROUP BY COD_CENTRO);
 
 --ANTES
 
