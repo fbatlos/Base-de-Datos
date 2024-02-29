@@ -2,7 +2,7 @@
 
 UPDATE ALUMNOS
 SET FECINC_AL = SYSDATE
-WHERE RTRIM(SUBSTR(NOMBRE_AL,INSTR (NOMBRE_AL, ',')+2)) = 'Amador';
+WHERE RTRIM(SUBSTR(NOMBRE_AL,INSTR (NOMBRE_AL, ',')+2)) = 'Amador'; --Se puede hacer con colum like %amador%
 
 --2--Poner la fecha de ingreso y la ciudad de Carlos a los alumnos de Sevilla.
 
