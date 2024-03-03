@@ -203,22 +203,34 @@ DESC PROFESORES;
 SELECT * FROM PROFESORES;
 
 
-SELECT CEIL(AVG(NUM_PLAZAS))
-FROM CENTROS;
-
 UPDATE CENTROS
-SET NUM_PLAZAS = (SELECT CEIL(AVG(NUM_PLAZAS))
-                    FROM CENTROS)
-WHERE 
+SET NUM_PLAZAS = NUM_PLAZAS/2
+WHERE COD_CENTRO IN (
+    SELECT COD_CENTRO
+    FROM profesores
+    GROUP BY COD_CENTRO
+    HAVING COUNT(COD_CENTRO) < 2
+)
+or COD_CENTRO NOT IN (SELECT COD_CENTRO from PROFESORES);
 
-SELECT cod_centro , COUNT(COD_CENTRO)
-from PROFESORES
-GROUP by COD_CENTRO
-HAVING  (select COUNT(COD_CENTRO)
-        WHERE 2 >= COUNT(COD_CENTRO)
-        from PROFESORES
-        GROUP by COD_CENTRO )
-; 
+--Antes
+
+COD_CENTRO	TIPO_CENTRO	NOMBRE	DIRECCION	TELEFONO	NUM_PLAZAS
+10	S	IES El Quijote	Avda. Los Molinos 25	965-887654	538
+15	P	CP Los Danzantes	C/Las Musas s/n	985-112322	250
+22	S	IES Planeta Tierra	C/Mina 45	925-443400	300
+45	P	CP Manuel Hidalgo	C/Granada 5	926-202310	220
+50	S	IES Anto�ete	C/Los Toreros 21	989-406090	310
+
+--AHORA
+COD_CENTRO	TIPO_CENTRO	NOMBRE	DIRECCION	TELEFONO	NUM_PLAZAS
+10	S	IES El Quijote	Avda. Los Molinos 25	965-887654	538
+15	P	CP Los Danzantes	C/Las Musas s/n	985-112322	250
+22	S	IES Planeta Tierra	C/Mina 45	925-443400	75
+45	P	CP Manuel Hidalgo	C/Granada 5	926-202310	55
+50	S	IES Anto�ete	C/Los Toreros 21	989-406090	155
+
+--El 22 y el 45 son tan bajos pues lo he ejecutado 2 veces , la primera sin afectar al 50 y la segunda si .
 
 
 --7--Eliminar los centros que no tengan personal.
@@ -278,4 +290,38 @@ COD_CENTRO        DNI APELLIDOS                      ESPECIALIDAD
         45   43526789 Serrano Laguia, Maria          INFORMATICA
          1    8790055 Clara Salas                    IDIOMA
 
+--9--Borrar el personal que esté en centros de menos de 300 plazas y con menos de dos profesores.
 
+SELECT C.COD_CENTRO
+FROM CENTROS C
+JOIN PERSONAL P ON C.COD_CENTRO = P.COD_CENTRO
+WHERE C.NUM_PLAZAS < 300
+GROUP BY C.COD_CENTRO
+HAVING 2 > COUNT(P.COD_CENTRO);
+
+SELECT * FROM PERSONAL; 
+
+
+DELETE FROM PERSONAL P
+WHERE COD_CENTRO in (  SELECT C.COD_CENTRO
+                        FROM CENTROS C
+                        JOIN PERSONAL P ON C.COD_CENTRO = P.COD_CENTRO
+                        WHERE C.NUM_PLAZAS < 300
+                        GROUP BY C.COD_CENTRO
+                        HAVING 2 > COUNT(P.COD_CENTRO))
+or COD_CENTRO NOT IN (SELECT COD_CENTRO from CENTROS);
+
+
+--No hay fila que cumpla los requisitos.
+
+
+--10 --Borrar a los profesores que estén en la tabla PROFESORES y no estén en la tabla PERSONAL.
+
+DELETE FROM PROFESORES
+WHERE NOT EXISTS (
+    SELECT *
+    FROM PERSONAL PER
+    join PROFESORES PROF on PER.COD_CENTRO = PROF.COD_CENTRO
+);
+
+--Todos existen en ambas tablas
