@@ -228,3 +228,14 @@ HAVING SUM(UNIDADES_VENDIDAS) > 30;
 
 --7--Cambiar los datos de la tienda con NIF '1111-A' igualándolos a los de la tienda con NIF '2222-A'.
 
+UPDATE TIENDAS
+SET (NOMBRE , DIRECCION ,POBLACION , PROVINCIA,CODPOSTAL) = (SELECT NOMBRE , DIRECCION ,POBLACION , PROVINCIA,CODPOSTAL
+                                                            FROM TIENDAS
+                                                            WHERE NIF = '2222-A')
+WHERE NIF = '1111-A';
+
+
+
+SELECT NOMBRE , DIRECCION ,POBLACION , PROVINCIA,CODPOSTAL
+FROM TIENDAS
+WHERE NIF = '2222-A';
