@@ -1,4 +1,4 @@
---Fco José Batista De Los Santos, Resultado : 
+--Fco José Batista De Los Santos, Resultado : 8.5
 
 -1--Dadas las tablas ALUM y NUEVOS, insertar en la tabla ALUM los alumnos nuevos.
 
