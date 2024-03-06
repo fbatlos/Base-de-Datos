@@ -261,6 +261,30 @@ WHERE PAIS = 'ITALIA';
 
 --9--Modificar aquellos pedidos en los que la cantidad pedida sea superior a las existencias del artículo, asignando el 20% de las existencias a la cantidad que se ha pedido.
 
+UPDATE PEDIDOS
+SET UNIDADES_PEDIDAS = (SELECT A.existencias*0.2
+                          FROM ARTICULOS A, PEDIDOS P  
+                          WHERE A.COD_FABRICANTE = P.COD_FABRICANTE
+                          AND A.ARTICULO = P.ARTICULO
+                          AND A.PESO = P.PESO
+                          AND A.CATEGORIA = P.CATEGORIA
+                          AND A.existencias < P.UNIDADES_PEDIDAS
+                          GROUP BY A.existencias)
+WHERE UNIDADES_PEDIDAS > (SELECT A.existencias
+                          FROM ARTICULOS A, PEDIDOS P  
+                          WHERE A.COD_FABRICANTE = P.COD_FABRICANTE
+                          AND A.ARTICULO = P.ARTICULO
+                          AND A.PESO = P.PESO
+                          AND A.CATEGORIA = P.CATEGORIA
+                          AND A.existencias < P.UNIDADES_PEDIDAS
+                          GROUP BY A.existencias 
+                          );
+
+--ANtes
+2222-A     Mejillones                       10          1 Primera    05/03/24               1000
+
+--Resulltado:
+2222-A     Mejillones                       10          1 Primera    05/03/24               60
 
 --10--Eliminar aquellas tiendas que no han realizado ventas.
 
@@ -328,3 +352,71 @@ NIF	ARTICULO	COD_FABRICANTE	PESO	CATEGORIA	FECHA_PEDIDO	UNIDADES_PEDIDAS
 3333-A	Barquillos	15	1	Segunda	20/11/2016	40
 3333-A	Canutillos	15	2	Segunda	20/11/2016	10
 
+--13--Borrar los pedidos que no tengan tienda.
+
+SELECT * FROM PEDIDOS;
+SELECT * FROM TIENDAS;
+
+DELETE FROM PEDIDOS
+WHERE NIF NOT IN (SELECT NIF
+                  FROM TIENDAS);
+
+SELECT NIF
+FROM TIENDAS;
+
+
+12 filas suprimidas.
+--RESULTADO
+NIF        ARTICULO             COD_FABRICANTE       PESO CATEGORIA  FECHA_PE UNIDADES_PEDIDAS
+---------- -------------------- -------------- ---------- ---------- -------- ----------------
+5555-B     Macarrones                       20          1 Primera    18/02/16               30
+5555-B     Atun                             10          3 Primera    21/02/16               10
+5555-B     Atun                             10          3 Segunda    11/03/16                4
+5555-B     Sardinillas                      10          1 Segunda    11/03/16               10
+5555-B     Macarrones                       25          1 Primera    14/04/16               12
+5555-B     Fideos                           25          1 Segunda    18/05/16               24
+5555-B     Fideos                           25          1 Segunda    19/05/16               20
+5555-B     Galletas Cuadradas               15          1 Segunda    20/06/16               15
+4141-B     Macarrones                       20          1 Primera    16/04/16               30
+4141-B     Atun                             10          3 Primera    21/06/16               10
+4141-B     Atun                             10          3 Segunda    12/08/16                9
+2222-A     Sardinillas                      10          1 Segunda    12/08/16               20
+2222-A     Sardinillas                      10          1 Tercera    12/08/16               22
+2222-A     Mejillones                       10          1 Primera    05/03/24             1000
+5555-B     Pañales                          30          4 Primera    05/03/24                5
+2222-A     Pañales                          30          4 Primera    05/03/24                5
+4141-B     Pañales                          30          4 Primera    05/03/24                5
+
+17 filas seleccionadas.
+
+
+--14--Restar uno a las unidades de los últimos pedidos de la tienda con NIF '5555-B'.
+
+UPDATE PEDIDOS
+SET UNIDADES_PEDIDAS = UNIDADES_PEDIDAS-1
+WHERE NIF = '5555-B';
+
+--Antes
+NIF        ARTICULO             COD_FABRICANTE       PESO CATEGORIA  FECHA_PE UNIDADES_PEDIDAS
+---------- -------------------- -------------- ---------- ---------- -------- ----------------
+5555-B     Macarrones                       20          1 Primera    18/02/16               30
+5555-B     Atun                             10          3 Primera    21/02/16               10
+5555-B     Atun                             10          3 Segunda    11/03/16                4
+5555-B     Sardinillas                      10          1 Segunda    11/03/16               10
+5555-B     Macarrones                       25          1 Primera    14/04/16               12
+5555-B     Fideos                           25          1 Segunda    18/05/16               24
+5555-B     Fideos                           25          1 Segunda    19/05/16               20
+5555-B     Galletas Cuadradas               15          1 Segunda    20/06/16               15
+
+--Ahora
+
+NIF        ARTICULO             COD_FABRICANTE       PESO CATEGORIA  FECHA_PE UNIDADES_PEDIDAS
+---------- -------------------- -------------- ---------- ---------- -------- ----------------
+5555-B     Macarrones                       20          1 Primera    18/02/16               29
+5555-B     Atun                             10          3 Primera    21/02/16                9
+5555-B     Atun                             10          3 Segunda    11/03/16                3
+5555-B     Sardinillas                      10          1 Segunda    11/03/16                9
+5555-B     Macarrones                       25          1 Primera    14/04/16               11
+5555-B     Fideos                           25          1 Segunda    18/05/16               23
+5555-B     Fideos                           25          1 Segunda    19/05/16               19
+5555-B     Galletas Cuadradas               15          1 Segunda    20/06/16               14
