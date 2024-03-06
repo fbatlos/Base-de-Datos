@@ -1,3 +1,4 @@
+--Francisco José Batista de los Santos.
 --1--Dar de alta un nuevo artículo de 'Primera' categoría para los fabricantes de 'FRANCIA' y abastecer con cinco unidades de ese artículo a todas las tiendas y en la fecha de hoy.
 
 SELECT * FROM ARTICULOS;
