@@ -239,3 +239,92 @@ WHERE NIF = '1111-A';
 SELECT NOMBRE , DIRECCION ,POBLACION , PROVINCIA,CODPOSTAL
 FROM TIENDAS
 WHERE NIF = '2222-A';
+
+1111-A	Comestibles Rodolfo	C/ del Val s/n	Alcala de Henares	MADRID	28804
+2222-A	Comestibles Rodolfo	C/ del Val s/n	Alcala de Henares	MADRID	28804
+
+--8--Cambiar todos los artículos de 'Primera' categoría a 'Segunda' categoría del país 'ITALIA'.
+
+SELECT * from fabricantes;
+SELECT * FROM ARTICULOS;
+
+
+UPDATE ARTICULOS
+SET CATEGORIA = 'Segunda'
+WHERE COD_FABRICANTE IN (SELECT COD_FABRICANTE FROM FABRICANTES WHERE PAIS = 'ITALIA')
+  AND CATEGORIA = 'Primera';
+
+--Da 20
+SELECT COD_FABRICANTE 
+FROM FABRICANTES 
+WHERE PAIS = 'ITALIA';
+
+--9--Modificar aquellos pedidos en los que la cantidad pedida sea superior a las existencias del artículo, asignando el 20% de las existencias a la cantidad que se ha pedido.
+
+
+--10--Eliminar aquellas tiendas que no han realizado ventas.
+
+DELETE FROM TIENDAS
+WHERE NIF NOT IN (SELECT NIF
+                  FROM VENTAS);
+
+--ANTES
+NIF	NOMBRE	DIRECCION	POBLACION	PROVINCIA	CODPOSTAL
+9999-Z	Pollos Hermanos	C/Colderon	Betica	MADRID	99999
+1111-A	Comestibles Rodolfo	C/ del Val s/n	Alcala de Henares	MADRID	28804
+5555-B	La gacela	C/Santander Rios, 45	Azuqueca	GUADALAJARA	19209
+2222-A	Comestibles Rodolfo	C/ del Val s/n	Alcala de Henares	MADRID	28804
+4444-A	La Pasta Gansa	C/Alcala, 2	Ajalvir	MADRID	28765
+3333-N	Ultramarinos Montse	Avda. Pio 10	Toledo	TOLEDO	45100
+4141-B	Todo Toledo	C/Avila 24	Talavera	TOLEDO	45199
+1234-W	Goku	C/Messi	Sevillanos	SEVILLA	12345
+7777-P	Joaquin	C/GolDelBetis	Calvenses	SEVILLA	54321
+
+--en ventas
+NIF
+2222-A
+3333-N
+5555-B
+4141-B
+3333-A--No EXISTE EN TIENDAS
+
+
+--Resultado
+5555-B	La gacela	C/Santander Rios, 45	Azuqueca	GUADALAJARA	19209
+2222-A	Comestibles Rodolfo	C/ del Val s/n	Alcala de Henares	MADRID	28804
+3333-N	Ultramarinos Montse	Avda. Pio 10	Toledo	TOLEDO	45100
+4141-B	Todo Toledo	C/Avila 24	Talavera	TOLEDO	45199
+
+
+--11--Eliminar los artículos que no hayan tenido ni compras ni ventas.
+
+DELETE FROM ARTICULOS
+WHERE (ARTICULO, COD_FABRICANTE, PESO, CATEGORIA) NOT IN (SELECT DISTINCT ARTICULO, COD_FABRICANTE, PESO, CATEGORIA FROM PEDIDOS)
+   or (ARTICULO, COD_FABRICANTE, PESO, CATEGORIA) NOT IN (SELECT DISTINCT ARTICULO, COD_FABRICANTE, PESO, CATEGORIA FROM VENTAS);
+
+
+--Borra 2
+
+
+--12--Borrar los pedidos de 'Primera' categoría cuyo país de procedencia sea 'BELGICA'.
+
+DELETE FROM PEDIDOS
+WHERE COD_FABRICANTE = (SELECT COD_FABRICANTE
+                        FROM FABRICANTES
+                        WHERE PAIS = 'BELGICA')
+AND CATEGORIA = 'Primera';
+
+--RESULTADO
+5 row(s) deleted.
+
+
+NIF	ARTICULO	COD_FABRICANTE	PESO	CATEGORIA	FECHA_PEDIDO	UNIDADES_PEDIDAS
+9999-Z	Galletas Cuadradas	15	1	Segunda	06/03/2024	20
+9999-Z	Galletas Cuadradas	15	1	Tercera	06/03/2024	20
+9999-Z	Barquillos	15	1	Segunda	06/03/2024	20
+9999-Z	Canutillos	15	2	Segunda	06/03/2024	20
+5555-B	Galletas Cuadradas	15	1	Segunda	20/06/2016	15
+1111-A	Canutillos	15	2	Segunda	10/04/2016	12
+3333-A	Barquillos	15	1	Segunda	20/11/2016	40
+3333-A	Canutillos	15	2	Segunda	20/11/2016	10
+
