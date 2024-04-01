@@ -3,15 +3,45 @@
 SELECT *
 FROM EMPLE
 where APELLIDO LIKE 'A%' 
-    and OFICIO LIKE '%E%';
+and OFICIO LIKE '%E%';
+
+--------------------------------------------------
+
+CREATE VIEW EMPLEADOS_A_B AS
+SELECT *
+FROM EMPLE
+where APELLIDO LIKE 'A%' 
+and OFICIO LIKE '%E%';
+
 
 --2--Seleccionar el APELLIDO, OFICIO y LOCALIDAD de los empleados que son ANALISTAS.
 SELECT APELLIDO , OFICIO , LOC
 FROM EMPLE , DEPART
 WHERE OFICIO = 'ANALISTA';
 
+
+CREATE VIEW ANALISTA AS
+SELECT APELLIDO , OFICIO , LOC
+FROM EMPLE , DEPART
+WHERE OFICIO = 'ANALISTA';
+
+INSERT INTO ANALISTA
+values('José','ANALISTA','CADÍZ');
+
 --3--Mostrar los empleados (nombre, oficio, salario y fecha de alta) que desempeñen el mismo oficio que "JIMENEZ" o que tengan un salario mayor o igual que "FERNANDEZ".
 
+SELECT APELLIDO , OFICIO , SALARIO , FECHA_ALT
+FROM EMPLE
+WHERE OFICIO = (SELECT OFICIO
+                FROM EMPLE
+                WHERE APELLIDO = 'JIMENEZ') 
+OR SALARIO >= (SELECT SALARIO
+                FROM EMPLE
+                WHERE APELLIDO = 'FERNANDEZ');
+
+--------------------------------------
+
+CREATE VIEW EMPLEADOS_JIMENEZ_FERNANDEZ AS
 SELECT APELLIDO , OFICIO , SALARIO , FECHA_ALT
 FROM EMPLE
 WHERE OFICIO = (SELECT OFICIO
@@ -28,6 +58,18 @@ FROM EMPLE
 WHERE SALARIO = (SELECT SALARIO
                 FROM EMPLE
                 WHERE APELLIDO = 'FERNANDEZ');
+
+-------------------------------------
+
+CREATE VIEW EMPLEADOS_FERNANDEZ AS
+SELECT APELLIDO , OFICIO , SALARIO
+FROM EMPLE
+WHERE SALARIO = (SELECT SALARIO
+                FROM EMPLE
+                WHERE APELLIDO = 'FERNANDEZ');
+
+
+
 
 --5--Mostrar los nombres y oficios de los empleados que tienen el mismo trabajo que "JIMENEZ".
 
