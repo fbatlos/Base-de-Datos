@@ -122,9 +122,22 @@ WHERE (nota>=7 AND nota<=8) AND nombre = 'FOL';
 
 --3--Mostrar los nombres de los alumnos de Madrid que tengan alguna asignatura suspendida.
 
-SELECT APENOM , nombre , nota
-FROM alumnos , asignaturas , Notas
-WHERE nombre = 'Madrid' AND nota<5;
+SELECT AL.APENOM , A.nombre , N.nota
+FROM alumnos AL, asignaturas A, Notas N
+WHERE pobla = 'Madrid'
+and N.nota < 5
+and AL.DNI = N.DNI
+and A.COD = N.COD;
+
+----------------------------------------------------------
+
+CREATE VIEW madrilenios_suspendidos AS
+SELECT AL.APENOM , A.nombre , N.nota
+FROM alumnos AL, asignaturas A, Notas N
+WHERE pobla = 'Madrid'
+and N.nota < 5
+and AL.DNI = N.DNI
+and A.COD = N.COD;
 
 --4 --Mostrar los nombres de las asignaturas que no tengan suspensos.
 
@@ -138,3 +151,6 @@ select apenom
 from alumnos 
 where dni in (select dni from notas where nota=(select nota from notas where dni = (select dni from alumnos where apenom = 'Díaz Fernández. María')
 and cod = (select cod from asignaturas where nombre = 'FOL')));
+
+
+
