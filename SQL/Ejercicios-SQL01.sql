@@ -7,6 +7,8 @@ and OFICIO LIKE '%E%';
 
 --------------------------------------------------
 
+--simple
+
 CREATE VIEW EMPLEADOS_A_B AS
 SELECT *
 FROM EMPLE
@@ -130,6 +132,8 @@ and AL.DNI = N.DNI
 and A.COD = N.COD;
 
 ----------------------------------------------------------
+
+--Compleja
 
 CREATE VIEW madrilenios_suspendidos AS
 SELECT AL.APENOM , A.nombre , N.nota

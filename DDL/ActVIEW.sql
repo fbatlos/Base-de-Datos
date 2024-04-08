@@ -1,0 +1,34 @@
+--simple
+
+CREATE VIEW EMPLEADOS_A_B AS
+SELECT *
+FROM EMPLE
+where APELLIDO LIKE 'A%' 
+and OFICIO LIKE '%E%';
+
+INSERT INTO EMPLEADOS_A_B(EMP_NO , APELLIDO , OFICIO,DEPT_NO)
+values (9999,'ADIAS','PESCADOR',10);
+
+UPDATE EMPLEADOS_A_B
+SET SALARIO = 9999999
+WHERE EMP_NO = 9999 ;
+
+CREATE or REPLACE VIEW EMPLEADOS_A_B AS
+SELECT *
+FROM EMPLE
+where APELLIDO LIKE 'A%' 
+and OFICIO LIKE '%O%';
+
+--Compleja
+
+CREATE VIEW madrilenios_suspendidos AS
+SELECT AL.APENOM , A.nombre , N.nota
+FROM alumnos AL, asignaturas A, Notas N
+WHERE pobla = 'Madrid'
+and N.nota < 5
+and AL.DNI = N.DNI
+and A.COD = N.COD;
+
+--NO deja
+INSERT INTO madrilenios_suspendidos(APENOM , NOMBRE , NOTA)
+values('PEPE','MUSSOLINI',8);
