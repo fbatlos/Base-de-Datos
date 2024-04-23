@@ -1,4 +1,4 @@
-Francisco jose Batista de los Santos---Nota : 10
+Francisco jose Batista de los Santos---Nota : 10¡
 
 --TAREA1:
 -- Crear un cursor explicito
