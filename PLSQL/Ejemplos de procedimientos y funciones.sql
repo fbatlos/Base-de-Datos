@@ -62,7 +62,7 @@ END EDAD;
 CREATE OR REPLACE FUNCTION EDAD(
 	fecha1 DATE, fecha2 DATE) 
 	RETURN NUMBER
- IS
+IS
 	nYear	NUMBER;
 BEGIN
     nYear := months_between(fecha1, fecha2)/12;
