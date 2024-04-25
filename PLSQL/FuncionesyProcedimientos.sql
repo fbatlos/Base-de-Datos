@@ -297,4 +297,5 @@ end CambiarLoc;
 --13.Visualizar todos los procedimientos y funciones del usuario almacenados en la base de datos y su situación (valid o invalid).
 SELECT OWNER, OBJECT_NAME, OBJECT_TYPE, STATUS
 FROM ALL_OBJECTS
-WHERE OBJECT_TYPE IN ('PROCEDURE','FUNCTION');
+WHERE OBJECT_TYPE IN ('PROCEDURE','FUNCTION')
+and OWNER = 'USUARIOT';
