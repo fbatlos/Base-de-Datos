@@ -73,6 +73,29 @@ END;
 
 C�digo:
 
+CREATE OR REPLACE FUNCTION CalculaMedia(pr_alumno_cod number) 
+
+	RETURN NUMBER
+IS
+	media NUMBER(3);
+BEGIN
+    media := (SELECT AVG(Nota_ma)
+				FROM MATRICULAS 
+				WHERE CODAL_MA = pr_alumno_cod);
+				
+	RETURN ABS(media);
+
+END;
+/
+
+declare
+   
+BEGIN
+
+    DBMS_OUTPUT.PUT_LINE(CalculaMedia(1));
+end;
+/
+
 ------------------------------------------------------------------------------------------------------------
 3.- Dise�a el procedimiento 'MediasAsig' que modifique el campo 'Notamedia_al' de la tabla 'Alumnos' al valor de la media de las notas de las asignaturas en las que est� matriculado.
 
