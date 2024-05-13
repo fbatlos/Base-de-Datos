@@ -65,7 +65,7 @@ is
     CURSOR Buscador_emple IS--Busca si hay algun apellido que contenga a cadena qu hemos introducido .
 		SELECT APELLIDO
         FROM EMPLE
-        where APELLIDO LIKE '%'|| cadena_v ||'%';
+        where APELLIDO LIKE '%'|| UPPER(cadena_v) ||'%';
 
     contador NUMBER(3);    -- contador para sacar el calculo final
 begin
@@ -100,7 +100,7 @@ where APELLIDO LIKE '%asdsad%';
 
 --4.Escribir un programa que visualice el apellido y el salario de los cinco empleados que tienen el salario más alto.
 
-create or replace procedure busacar_emple_cadena 
+create or replace procedure cinco_mejor_salario --poner _pr 
 is
     CURSOR Orden_salarios IS---Ordena de forma descendiente el salario y guarda el apellido de los empleados.
 		SELECT APELLIDO,SALARIO
@@ -327,11 +327,11 @@ begin
 
 EXCEPTION
   WHEN NO_PRESIDENTE THEN
-        DBMS_OUTPUT.PUT_LINE('No puedes ser el presidente.');
+        DBMS_OUTPUT.PUT_LINE(-2001 ||'No puedes ser el presidente.');
     WHEN NO_DEPART_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No se ha encontrado el departamento.');
+        DBMS_OUTPUT.PUT_LINE(-2002 ||'No se ha encontrado el departamento.');
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No se ha encontrado registro.');
+        DBMS_OUTPUT.PUT_LINE(-2003 ||'No se ha encontrado registro.');
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE( 'SQL ERROR : '|| SQLCODE);
 end;
@@ -350,7 +350,7 @@ BEGIN
     FOR emp IN (SELECT EMP_NO, SALARIO FROM EMPLE WHERE DEPT_NO = dept_no_p) LOOP
         IF importe_p IS NOT NULL AND porcentaje_p IS NOT NULL THEN
             -- Si se proporciona tanto el importe como el porcentaje, se selecciona el que resulte en un salario más alto
-            IF emp.SALARIO * (1 + porcentaje_p / 100) > emp.SALARIO + importe_p THEN
+            IF emp.SALARIO * (1 + porcentaje_p / 100) > emp.SALARIO + importe_p THEN --GREATEST de dos cosas dice cual es mayor 
                 UPDATE EMPLE
                 SET SALARIO = emp.SALARIO * (1 + porcentaje_p / 100)
                 WHERE EMP_NO = emp.EMP_NO;
