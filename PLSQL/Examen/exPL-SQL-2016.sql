@@ -72,18 +72,33 @@ END;
 2.- Dise�a la funci�n 'CalculaMedia' que reciba como par�metro el c�digo de un alumno y devuelva la media de las notas de las asignaturas en las que est� matriculado.
 
 C�digo:
-
+--Calcula la media de la asignatura que le digamos
 CREATE OR REPLACE FUNCTION CalculaMedia(pr_alumno_cod number) 
 
 	RETURN NUMBER
 IS
-	media NUMBER(3);
+--Variables necesarias
+	media NUMBER;
+
+	NO_VALOR_MEDIA;
 BEGIN
-    media := (SELECT AVG(Nota_ma)
-				FROM MATRICULAS 
-				WHERE CODAL_MA = pr_alumno_cod);
-				
+--SELECT de la media de las notas segun el codigo introducido
+      SELECT AVG(Nota_ma) INTO media
+		FROM MATRICULAS 
+		WHERE CODAL_MA = pr_alumno_cod;
+--Comprueba si se ha podido obtener algun numero
+	if media is NULL them
+		RAISE NO_VALOR_MEDIA;
+	end if;
+--Retorna la media
 	RETURN ABS(media);
+
+EXCEPTION--Captura posibles errores 
+
+    WHEN NO_VALOR_MEDIA THEN
+        DBMS_OUTPUT.PUT_LINE(-2001,'No se ha encontrado registro.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE(SQLCODE);
 
 END;
 /
@@ -101,6 +116,39 @@ end;
 
 C�digo:
 
+
+
+CREATE or REPLACE PROCEDURE MediasAsig()
+IS
+	CURSOR codAL_c IS
+		SELECT Codigo_al
+		from alumnos;
+
+	media number;
+
+BEGIN
+	for i in codAL_c LOOP
+
+		EXIT WHEN codAL_c%NOTFOUND;
+
+		SELECT AVG(Nota_ma) into media
+			FROM matriculas
+			WHERE CodAl_ma = i.Codigo_al;
+
+		UPDATE Alumnos
+		SET Notamedia_al = media
+		WHERE Codigo_al = i.Codigo_al;	
+	end LOOP;
+
+EXCEPTION
+
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No se ha encontrado registro.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE(SQLCODE);
+
+END;
+/
 
 ------------------------------------------------------------------------------------------------------------
 4.- Dise�a el procedimiento 'CuentaNotas' que reciba como par�metros de entrada el c�digo de una asignatura y el valor de una nota, y devuelva el n�mero de alumnos que tienen esa nota de los matriculados en esa asignatura y cuantos de ellos son repetidores.
