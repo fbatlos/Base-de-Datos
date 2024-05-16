@@ -1,0 +1,84 @@
+--Funcion 
+	CREATE OR REPLACE FUNCTION fn_CalculaMedia_2
+	(p_cod_al IN ALUMNOS.CODIGO_AL%TYPE)
+		RETURN NUMBER
+	AS
+		vn_media_not NUMBER;
+	BEGIN
+		SELECT NVL(AVG(CASE WHEN M.NOTA_MA >= 5 THEN 5 ELSE M.NOTA_MA END), 0) INTO vn_media_not
+			FROM MATRICULAS M
+			WHERE M.CODAL_MA = p_cod_al;
+
+		RETURN vn_media_not;
+	EXCEPTION
+	  WHEN OTHERS THEN
+		DBMS_OUTPUT.PUT_LINE('Error al calcular la media del alumno');
+	END fn_CalculaMedia_2;
+	/
+
+--13.Visualizar todos los procedimientos y funciones del usuario almacenados en la base de datos y su situación (valid o invalid).
+SELECT OWNER, OBJECT_NAME, OBJECT_TYPE, STATUS
+FROM ALL_OBJECTS
+WHERE OBJECT_TYPE IN ('PROCEDURE','FUNCTION')
+and OWNER = 'USUARIOT';
+
+--Fila alterada
+CREATE OR REPLACE PROCEDURE eliminar_emple (EMPLE_n IN NUMBER)
+IS
+    
+BEGIN
+  --DELETE
+  DELETE EMPLE
+  WHERE EMP_NO = EMPLE_n;
+  --Si hay alteracion en sql lo cuenta 
+  if SQL%ROWCOUNT=1 then
+  	dbms_output.put_line('Registro Borrado');
+  else
+  	dbms_output.put_line('Empleado no encontrado');
+  end if;
+
+END ;
+/
+
+--Array
+CREATE OR REPLACE PROCEDURE Suma_List_N (
+    num IN NUMBER DEFAULT 0,
+    num2 In NUMBER DEFAULT 0,
+    num3 In NUMBER DEFAULT 0,
+    num4 In NUMBER DEFAULT 0,
+    num5 In NUMBER DEFAULT 0) IS
+	--Crea un Array del tipo y longitud deseadas.
+    TYPE lista IS VARRAY(5) of NUMBER(9);
+    
+    listaNum lista := lista(num,num2,num3,num4,num5);
+
+    Resultado NUMBER;
+BEGIN
+
+        DBMS_OUTPUT.PUT_LINE('Resultado : ');
+        --las suma de los numeros puestos.
+        Resultado:= listaNum(1)+listaNum(2)+listaNum(3)+listaNum(4)+listaNum(5);
+        DBMS_OUTPUT.PUT_LINE(Resultado);
+END;
+/
+
+--FRO UPDATE
+DECLARE
+	CURSOR C_PRUEBA IS
+		SELECT NVL(COMISION,0) V_COM, SALARIO
+		FROM EMPLE
+		FOR UPDATE OF COMISION, SALARIO;
+BEGIN 
+	FOR REG IN C_PRUEBA LOOP
+		IF REG.V_COM < REG.SALARIO /10 THEN
+			UPDATE EMPLE SET COMISION = SALARIO/10
+				WHERE CURRENT OF C_PRUEBA;
+	-- Con la cláusula WHERE CURRENT OF <nombre_de_cursor>
+	-- indicamos que se modifique sólo el registro que estamos
+	-- actualmente procesando del cursor, es decir, el de 
+	-- la última instrucción FETCH
+		END IF;
+	END LOOP;
+	COMMIT; -- Valida la transacción y libera los bloqueos
+END;
+/

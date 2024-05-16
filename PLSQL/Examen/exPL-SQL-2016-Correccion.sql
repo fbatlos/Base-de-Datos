@@ -1,39 +1,39 @@
 ------------------------------------------------------------------------------------------------------------
---	Nombre: <Pon tu nombre aquí>
+--	Nombre: <Pon tu nombre aquï¿½>
 ------------------------------------------------------------------------------------------------------------
 	INSTRUCCIONES:
 	==============
 
 -Salva este fichero con las iniciales de tu nombre y apellidos:
-	Ejemplo:	José María Rivera Calvete
+	Ejemplo:	Josï¿½ Marï¿½a Rivera Calvete
 			JMRC.sql
 
--Pon tu nombre al ejercicio en la primera línea y lee atentamente todas las preguntas.
+-Pon tu nombre al ejercicio en la primera lï¿½nea y lee atentamente todas las preguntas.
 
 -Carga el script para el examen desde el fichero "DatosPLSQL.sql".
 
--RECUERDA: guardar, cada cierto tiempo, el contenido de este fichero. Es lo que voy a evaluar, si lo pierdes, lo siento, en el final tendrás otra oportunidad.
+-RECUERDA: guardar, cada cierto tiempo, el contenido de este fichero. Es lo que voy a evaluar, si lo pierdes, lo siento, en el final tendrï¿½s otra oportunidad.
 
-PUNTUACIÓN
+PUNTUACIï¿½N
 ==========
 - Cada pregunta vale 2 puntos
 
  -- TABLAS: ASIGNATURAS, ALUMNOS, MATRICULAS, PROFESORES
  
-- Se considerará para la evaluación:
+- Se considerarï¿½ para la evaluaciï¿½n:
 	- Que funcione
-	- Estilo de programación
-	- Legibilidad del código
+	- Estilo de programaciï¿½n
+	- Legibilidad del cï¿½digo
 	- Tratamiento de excepciones
-	- Código reutilizable y paramétrico
+	- Cï¿½digo reutilizable y paramï¿½trico
 	- Cursores adecuados
 
 ------------------------------------------------------------------------------------------------------------
-1.- Diseña el procedimiento 'MediasAsig' que reciba como parámetro el código de una asignatura y actualice el campo 'Notamedia_as' de la tabla 'Asignaturas' al valor medio de las notas de los alumnos que están matriculados, el campo 'Nota_ma', considerando que para el cálculo de la media se condiderarán las notas de los alumons repetidores de la siguiente manera:
-	- Si está aprobado, un 5, independientemente de la nota que tenga.
-	- Si está suspenso, el valor de su nota, el campo 'Nota_ma'.
+1.- Diseï¿½a el procedimiento 'MediasAsig' que reciba como parï¿½metro el cï¿½digo de una asignatura y actualice el campo 'Notamedia_as' de la tabla 'Asignaturas' al valor medio de las notas de los alumnos que estï¿½n matriculados, el campo 'Nota_ma', considerando que para el cï¿½lculo de la media se condiderarï¿½n las notas de los alumons repetidores de la siguiente manera:
+	- Si estï¿½ aprobado, un 5, independientemente de la nota que tenga.
+	- Si estï¿½ suspenso, el valor de su nota, el campo 'Nota_ma'.
 
-Código:
+Cï¿½digo:
 
 	SET SERVEROUTPUT ON
 	
@@ -82,9 +82,9 @@ Código:
 			 1 Desarrollo de interfaces                 1         4,17
 	
 ------------------------------------------------------------------------------------------------------------
-2.- Diseña la función 'CalculaMedia' que reciba como parámetro el código de un alumno y devuelva la media de las notas de las asignaturas en las que esté matriculado.
+2.- Diseï¿½a la funciï¿½n 'CalculaMedia' que reciba como parï¿½metro el cï¿½digo de un alumno y devuelva la media de las notas de las asignaturas en las que estï¿½ matriculado.
 
-Código:
+Cï¿½digo:
 	
 	CREATE OR REPLACE FUNCTION fn_CalculaMedia_2
 	(p_cod_al IN ALUMNOS.CODIGO_AL%TYPE)
@@ -108,7 +108,7 @@ Código:
 	DECLARE
 		v_media NUMBER;
 	BEGIN
-		v_media := fn_CalculaMedia_2(1); -- código del alumno
+		v_media := fn_CalculaMedia_2(1); -- cï¿½digo del alumno
 		DBMS_OUTPUT.PUT_LINE('La media de notas del alumno es: ' || v_media);
 	END;
 	/
@@ -118,9 +118,9 @@ Código:
 		
 
 ------------------------------------------------------------------------------------------------------------
-3.- Diseña el procedimiento 'MediasAsig' que modifique el campo 'Notamedia_al' de la tabla 'Alumnos' al valor de la media de las notas de las asignaturas en las que esté matriculado.
+3.- Diseï¿½a el procedimiento 'MediasAsig' que modifique el campo 'Notamedia_al' de la tabla 'Alumnos' al valor de la media de las notas de las asignaturas en las que estï¿½ matriculado.
 
-Código:
+Cï¿½digo:
 	
 	CREATE OR REPLACE PROCEDURE pr_MediasAsig_2
 	AS
@@ -182,7 +182,7 @@ Código:
 				14 MARIN GELO           JOSE M.    c/ Sierpes 3         SEVILLA            7,67
 				15 MAYA MILES           SAMUEL     c/ Sierpes 3         SEVILLA             6,5
 				16 MORALES LUNA         JORGE      c/ Real 3            CASTILLEJA          5,5
-				17 ORDOÐEZ BERNALDEZ    JAVIER     c/ Real 3            CASTILLEJA          7,5
+				17 ORDOï¿½EZ BERNALDEZ    JAVIER     c/ Real 3            CASTILLEJA          7,5
 				18 PONCE RODRIGUEZ      JOSE M.    c/ Real 3            CASTILLEJA            5
 				19 ROMERO PEREZ         TERESA     c/ Sierpes 3         SEVILLA             6,5
 				20 RUA CONDE            JOAQUIN    c/ Sierpes 3         SEVILLA               7
@@ -207,7 +207,7 @@ Código:
 				14 MARIN GELO           JOSE M.    c/ Sierpes 3         SEVILLA            
 				15 MAYA MILES           SAMUEL     c/ Sierpes 3         SEVILLA             
 				16 MORALES LUNA         JORGE      c/ Real 3            CASTILLEJA         
-				17 ORDOÐEZ BERNALDEZ    JAVIER     c/ Real 3            CASTILLEJA          
+				17 ORDOï¿½EZ BERNALDEZ    JAVIER     c/ Real 3            CASTILLEJA          
 				18 PONCE RODRIGUEZ      JOSE M.    c/ Real 3            CASTILLEJA            
 				19 ROMERO PEREZ         TERESA     c/ Sierpes 3         SEVILLA             
 				20 RUA CONDE            JOAQUIN    c/ Sierpes 3         SEVILLA               
@@ -216,10 +216,10 @@ Código:
 
 
 ------------------------------------------------------------------------------------------------------------
-4.- Diseña el procedimiento 'CuentaNotas' que reciba como parámetros de entrada el código de una asignatura y el valor de una nota, y devuelva el número de alumnos que tienen esa nota de los matriculados en esa asignatura y cuantos de ellos son repetidores.
-(Nota: Recuerda la opción OUT en los argumentos de un procedimiento)
+4.- Diseï¿½a el procedimiento 'CuentaNotas' que reciba como parï¿½metros de entrada el cï¿½digo de una asignatura y el valor de una nota, y devuelva el nï¿½mero de alumnos que tienen esa nota de los matriculados en esa asignatura y cuantos de ellos son repetidores.
+(Nota: Recuerda la opciï¿½n OUT en los argumentos de un procedimiento)
 
-Código:
+Cï¿½digo:
 
 	CREATE OR REPLACE PROCEDURE pr_CuentaNotas
 	(p_cod_asig IN ASIGNATURAS.CODIGO_AS%TYPE,
@@ -251,36 +251,36 @@ Código:
 		  v_num_repetidores NUMBER;
 		BEGIN
 		  pr_CuentaNotas(1, 7, v_num_alumnos, v_num_repetidores);
-		  DBMS_OUTPUT.PUT_LINE('Número de alumnos con nota 7: ' || v_num_alumnos);
-		  DBMS_OUTPUT.PUT_LINE('Número de repetidores con nota 7: ' || v_num_repetidores);
+		  DBMS_OUTPUT.PUT_LINE('Nï¿½mero de alumnos con nota 7: ' || v_num_alumnos);
+		  DBMS_OUTPUT.PUT_LINE('Nï¿½mero de repetidores con nota 7: ' || v_num_repetidores);
 		END;
 		/
 		
-		-- Número de alumnos con nota 7: 4
-		-- Número de repetidores con nota 7: 2
+		-- Nï¿½mero de alumnos con nota 7: 4
+		-- Nï¿½mero de repetidores con nota 7: 2
 
 		-- Procedimiento PL/SQL terminado correctamente.
 
 
 ------------------------------------------------------------------------------------------------------------
-5.- Diseña el procedimiento 'ListaAsignatura' que reciba como argumento el código de una asignatura y muestre un listado de los alumnos de la misma similar al siguiente:
+5.- Diseï¿½a el procedimiento 'ListaAsignatura' que reciba como argumento el cï¿½digo de una asignatura y muestre un listado de los alumnos de la misma similar al siguiente:
 ------------------------------------------------------
 Asignatura: Java
 Profesor: RUIZ DE LOPERA, MANUEL
 
-	Nombre							Rep		Nº Asig Matriculado
+	Nombre							Rep		Nï¿½ Asig Matriculado
 	------							---		--------------------
  1	SANOGO, BAFLE MOR				N		2
- 2	ÁLVAREZ CAMINO, JOAQUÍN			N		3	
+ 2	ï¿½LVAREZ CAMINO, JOAQUï¿½N			N		3	
  3	BAENA QUINTERO, FRANCISCO		S		3
- 4	BENÍTEZ MORALES, PEDRO L.		N		3	
- 5	HERRERO SAN ROMÁN, ESTEBAN		S		1
- 6	JIMÉNEZ NAVARRO, DAVID			N		3
- 7	LÓPEZ BARBAZÁN, MANUEL			N		3
- 8	MARÍN GELO, JOSÉ M.				S		3
+ 4	BENï¿½TEZ MORALES, PEDRO L.		N		3	
+ 5	HERRERO SAN ROMï¿½N, ESTEBAN		S		1
+ 6	JIMï¿½NEZ NAVARRO, DAVID			N		3
+ 7	Lï¿½PEZ BARBAZï¿½N, MANUEL			N		3
+ 8	MARï¿½N GELO, JOSï¿½ M.				S		3
 ------------------------------------------------------------------------------------------------------------
 
-Código:
+Cï¿½digo:
 	
 	CREATE OR REPLACE PROCEDURE pr_ListaAsignatura
 	(p_asignatura Asignaturas.Codigo_as%TYPE)
@@ -300,7 +300,9 @@ Código:
 	
 		DBMS_OUTPUT.PUT_LINE('Asignaturas ' || v_nombre);
 		DBMS_OUTPUT.PUT_LINE('Profesor: ' || v_profesor);
-		DBMS_OUTPUT.PUT_LINE('Nombre' || LPAD(' ', 25) || 'Rep' || LPAD(' ', 10) || 'Nº Asig Matriculado');
+
+		
+		DBMS_OUTPUT.PUT_LINE('Nombre' || LPAD(' ', 25) || 'Rep' || LPAD(' ', 10) || 'Nï¿½ Asig Matriculado');
 		DBMS_OUTPUT.PUT_LINE('------' || LPAD(' ', 25) || '---' || LPAD(' ', 10) || '-------------------');
 		
 		FOR reg IN c_datos LOOP
@@ -312,7 +314,7 @@ Código:
 		
 		EXCEPTION 
 			WHEN NO_DATA_FOUND THEN
-				DBMS_OUTPUT.PUT_LINE('No existe el código de la asignatura: ' || p_asignatura);
+				DBMS_OUTPUT.PUT_LINE('No existe el cï¿½digo de la asignatura: ' || p_asignatura);
 			WHEN others THEN
 				DBMS_OUTPUT.PUT_LINE('Error: No existe el alumno.' || 'CODIGO DE ERROR:' || SQLCODE);
 	END pr_ListaAsignatura; 
@@ -325,12 +327,12 @@ Código:
 	END;
 	/
 	
-	-- El resultado sería el siguiente:
+	-- El resultado serï¿½a el siguiente:
 	
 		Asignaturas Java
 		Profesor: RUIZ DE LOPERA, MANUEL
 				
-				Nombre                         Rep          Nº Asig Matriculado
+				Nombre                         Rep          Nï¿½ Asig Matriculado
 				------                         ---          -------------------
 		             SANOGO, BAFLE MOR         	N                      2
 		       ALVAREZ CAMINO, JOAQUIN         	N                      3
